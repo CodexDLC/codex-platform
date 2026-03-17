@@ -1,0 +1,84 @@
+site_name: codex-platform
+site_description: Infrastructure, background tasks (ARQ), Redis service and framework adapters for Codex
+site_author: Codex Team
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+
+plugins:
+  - search
+  - mkdocs-include-markdown-plugin
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_source: true
+            show_root_heading: true
+
+nav:
+  - Home: index.md
+  - Guide (RU):
+      - 📡 Worker:
+          - 📖 Обзор: ru_RU/architecture/services/worker/README.md
+          - 🔄 Data Flow: ru_RU/architecture/services/worker/data_flow.md
+      - 📪 Notifications:
+          - 📖 Обзор: ru_RU/architecture/services/notifications/README.md
+          - 🔌 Адаптеры: ru_RU/architecture/services/notifications/adapters.md
+          - 🔄 Data Flow: ru_RU/architecture/services/notifications/data_flow.md
+      - 🔌 Redis Service:
+          - 📖 Обзор: ru_RU/architecture/services/redis_service/README.md
+          - 🔄 Data Flow: ru_RU/architecture/services/redis_service/data_flow.md
+  - Guide (EN):
+      - 📡 Worker:
+          - 📖 Overview: en_EN/architecture/services/worker/README.md
+          - 🔄 Data Flow: en_EN/architecture/services/worker/data_flow.md
+      - 📪 Notifications:
+          - 📖 Overview: en_EN/architecture/services/notifications/README.md
+          - 🔌 Адаптеры: en_EN/architecture/services/notifications/adapters.md
+          - 🔄 Data Flow: en_EN/architecture/services/notifications/data_flow.md
+      - 🔌 Redis Service:
+          - 📖 Overview: en_EN/architecture/services/redis_service/README.md
+          - 🔄 Data Flow: en_EN/architecture/services/redis_service/data_flow.md
+  - API Reference:
+      - 🔌 Adapters: api/adapters/index.md
+      - 🔌 Redis Service:
+          - Overview: api/redis_service/index.md
+          - Key Registry: api/redis_service/keys.md
+          - Mixins: api/redis_service/mixins.md
+          - Service: api/redis_service/service.md
+          - Mixins Deep Dive:
+              - Hash: api/redis_service/mixins/hash.md
+              - JSON: api/redis_service/mixins/json_.md
+              - List: api/redis_service/mixins/list_.md
+              - Pipeline: api/redis_service/mixins/pipeline.md
+              - Set: api/redis_service/mixins/set_.md
+              - Stream: api/redis_service/mixins/stream.md
+              - String: api/redis_service/mixins/string.md
+      - 📡 Worker:
+          - ARQ Base: api/worker/arq/base.md
+          - ARQ Config: api/worker/arq/config.md
+          - Task Utils: api/worker/arq/task_utils.md
+      - 📪 Notifications:
+          - Overview: api/notifications/index.md
+          - DTOs: api/notifications/dto.md
+          - Service: api/notifications/service.md
+          - Channels:
+              - Email: api/worker/notifications/channels/email.md
+              - Orchestrator: api/worker/notifications/channels/orchestrator.md
+              - Registry: api/worker/notifications/channels/registry.md
+              - Renderer: api/worker/notifications/channels/renderer.md
+  - Changelog: changelog.md
+
+extra:
+  version:
+    provider: mike
