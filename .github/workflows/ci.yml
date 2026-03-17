@@ -79,7 +79,7 @@ jobs:
       - name: Install All Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[dev]"
+          pip install -e ".[dev,docs]"
 
       - name: Run Integration Tests
         env:

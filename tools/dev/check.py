@@ -120,9 +120,8 @@ def run_all() -> None:
         sys.exit(1)
 
     choice = input(f"\n{Colors.YELLOW}🚀 Run Integration Tests? (Requires Redis) [y/N]: {Colors.ENDC}").lower()
-    if choice == "y":
-        if not run_tests("integration"):
-            sys.exit(1)
+    if choice == "y" and not run_tests("integration"):
+        sys.exit(1)
 
     print(f"\n{Colors.GREEN}{Colors.BOLD}🎉 ALL CHECKS PASSED!{Colors.ENDC}")
 
