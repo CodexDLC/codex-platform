@@ -1,10 +1,10 @@
 """
-codex_platform.worker.arq.config
+codex_platform.workers.arq.config
 ================================
-Base worker configuration with SMTP and ARQ fields.
+Base workers configuration with SMTP and ARQ fields.
 
 Extends BaseCommonSettings from codex_platform.settings.
-Maps standard Django .env names to worker-friendly fields.
+Maps standard Django .env names to workers-friendly fields.
 
 Usage:
     class MyWorkerConfig(BaseWorkerConfig):
@@ -23,13 +23,22 @@ from codex_platform.settings import BaseCommonSettings
 
 
 class BaseWorkerConfig(BaseCommonSettings):
-    """
-    Base config for ARQ workers. Provides SMTP and ARQ configuration.
+    """Base configuration for ARQ workers — provides SMTP and ARQ settings.
 
-    Maps standard Django .env variable names (EMAIL_HOST, etc.)
-    to internal SMTP_ prefixed fields for clarity.
+    Maps standard Django ``.env`` variable names (``EMAIL_HOST``, etc.) to
+    internal ``SMTP_``-prefixed fields for clarity.
 
-    Projects extend this to add vendor-specific fields (Twilio, Seven.io, etc.)
+    Extend this class in your project to add vendor-specific fields
+    (Twilio, Seven.io, SendGrid, etc.).
+
+    Example::
+
+        class MyWorkerConfig(BaseWorkerConfig):
+            SEVEN_IO_API_KEY: str | None = None
+            TEMPLATES_DIR: str = "src/workers/templates"
+
+            class Config:
+                env_file = ".env"
     """
 
     # --- Email (SMTP) — маппинг Django env names ---
@@ -48,7 +57,7 @@ class BaseWorkerConfig(BaseCommonSettings):
 
     @property
     def arq_redis_settings(self) -> Any:
-        """Returns RedisSettings for ARQ from base redis config."""
+        """Build and return an ARQ ``RedisSettings`` object from the base Redis config."""
         from arq.connections import RedisSettings
 
         return RedisSettings(

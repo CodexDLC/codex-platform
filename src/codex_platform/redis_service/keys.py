@@ -4,24 +4,22 @@ codex_platform.redis_service.keys
 Redis Key Registry — typed, centralized key definitions.
 
 Eliminates "magic strings" and prevents key format mismatches
-across multiple containers (bot, worker, API) that share the same Redis.
+across multiple containers (bot, workers, API) that share the same Redis.
 
 Usage::
 
-    # Define shared keys in codex_platform:
     class UserKey(BaseRedisKey):
         template = "u:{user_id}"
 
-    # Use in service:
     key = UserKey().build(user_id=42)          # → "u:42"
-    await service.get_hash_json(key, "profile")
 
-    # Or pass the key object directly (auto-built in mixins):
-    await service.get_hash_json(UserKey(), "profile", user_id=42)
+    # Or via resolve_key:
+    from codex_platform.redis_service.keys import resolve_key
+    resolve_key(UserKey(), user_id=42)         # → "u:42"
+    resolve_key("u:42")                        # → "u:42"
 
 Extending for project-specific keys::
 
-    # In your project:
     from codex_platform.redis_service.keys import BaseRedisKey
 
     class JobStatusKey(BaseRedisKey):
@@ -38,13 +36,6 @@ class BaseRedisKey(ABC):
 
     Subclass and define `template` with ``{placeholder}`` syntax.
     Call ``.build(**kwargs)`` to construct the final key string.
-
-    Example::
-
-        class UserProfileKey(BaseRedisKey):
-            template = "u:{user_id}:profile"
-
-        key = UserProfileKey().build(user_id=42)  # → "u:42:profile"
     """
 
     @property
@@ -53,8 +44,13 @@ class BaseRedisKey(ABC):
         """Key template string with ``{placeholder}`` syntax."""
 
     def build(self, **kwargs: Any) -> str:
-        """
-        Build the final key string from template and arguments.
+        """Build the final key string by formatting the template with keyword arguments.
+
+        Args:
+            **kwargs: Values for each placeholder defined in ``template``.
+
+        Returns:
+            Fully resolved Redis key string.
 
         Raises:
             ValueError: If a required placeholder argument is missing.
@@ -66,6 +62,27 @@ class BaseRedisKey(ABC):
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(template={self.template!r})"
+
+
+def resolve_key(key: "str | BaseRedisKey", **kwargs: Any) -> str:
+    """Resolve a key that is either a plain string or a ``BaseRedisKey`` instance.
+
+    If ``key`` is a :class:`BaseRedisKey`, calls ``key.build(**kwargs)``.
+    If ``key`` is a plain string, returns it unchanged.
+
+    Args:
+        key: Redis key string or a ``BaseRedisKey`` instance.
+        **kwargs: Placeholder values forwarded to ``BaseRedisKey.build``.
+
+    Returns:
+        Resolved Redis key string.
+
+    Example::
+
+        resolve_key(UserKey(), user_id=42)   # → "u:42"
+        resolve_key("u:42")                  # → "u:42"
+    """
+    return key.build(**kwargs) if isinstance(key, BaseRedisKey) else key
 
 
 # ---------------------------------------------------------------------------
@@ -85,15 +102,9 @@ class SessionKey(BaseRedisKey):
     template = "sess:{token}"
 
 
-class StreamKey(BaseRedisKey):
-    """Redis Stream name. Args: stream_name."""
-
-    template = "str:{stream_name}"
-
-
 __all__ = [
     "BaseRedisKey",
+    "resolve_key",
     "UserKey",
     "SessionKey",
-    "StreamKey",
 ]

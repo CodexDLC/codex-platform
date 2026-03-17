@@ -1,10 +1,10 @@
 """
-codex_platform.worker.arq.base
+codex_platform.workers.arq.base
 ============================
 Base infrastructure for ARQ background workers.
 
 Usage:
-    from codex_platform.worker.arq import BaseArqWorkerSettings, base_startup, base_shutdown
+    from codex_platform.workers.arq import BaseArqWorkerSettings, base_startup, base_shutdown
 
     class MyWorkerSettings(BaseArqWorkerSettings):
         redis_settings = RedisSettings(...)
@@ -24,11 +24,13 @@ log = logging.getLogger(__name__)
 
 
 class BaseArqService:
-    """
-    Async ARQ client for use inside worker tasks.
-    (For Django producer-side: see adapters.arq.client.BaseArqClient)
+    """Async ARQ client for use inside worker tasks.
 
-    Usage:
+    For the Django producer-side client see
+    ``codex_platform.adapters.arq.client.BaseArqClient``.
+
+    Example::
+
         service = BaseArqService(redis_settings)
         await service.init()
         await service.enqueue_job("my_task", arg1, arg2)
@@ -36,10 +38,20 @@ class BaseArqService:
     """
 
     def __init__(self, redis_settings: RedisSettings) -> None:
+        """Initialize the service with Redis connection settings.
+
+        Args:
+            redis_settings: ARQ ``RedisSettings`` instance.
+        """
         self.pool: ArqRedis | None = None
         self.redis_settings = redis_settings
 
     async def init(self) -> None:
+        """Open the ARQ connection pool. No-op if already initialized.
+
+        Raises:
+            Exception: If the Redis connection cannot be established.
+        """
         if not self.pool:
             try:
                 self.pool = await create_pool(self.redis_settings)
@@ -49,6 +61,7 @@ class BaseArqService:
                 raise
 
     async def close(self) -> None:
+        """Close the ARQ connection pool gracefully."""
         if self.pool:
             try:
                 await self.pool.close()
@@ -57,6 +70,16 @@ class BaseArqService:
                 log.exception("BaseArqService | close | status=failed")
 
     async def enqueue_job(self, function: str, *args: Any, **kwargs: Any) -> Any | None:
+        """Enqueue a background job. Initializes the pool on first call.
+
+        Args:
+            function: ARQ worker function name.
+            *args: Positional arguments forwarded to the function.
+            **kwargs: Keyword arguments forwarded to the function.
+
+        Returns:
+            ARQ ``Job`` handle, or ``None`` if enqueueing failed.
+        """
         if not self.pool:
             await self.init()
         if self.pool:
@@ -75,27 +98,27 @@ class BaseArqService:
 
 
 # --- Health Check ---
-# Файл-маркер для container health probes (Docker HEALTHCHECK, K8s liveness)
+# Marker file for container health probes (Docker HEALTHCHECK, K8s liveness)
 HEALTH_FILE = pathlib.Path("/tmp/arq_worker_healthy")  # nosec B108
 
 
 async def base_startup(ctx: dict[str, Any]) -> None:
-    """Base startup hook. Creates health check file. Extend in your worker."""
+    """Base startup hook. Creates health check file. Extend in your workers."""
     HEALTH_FILE.touch()
     log.info("ArqWorker | startup | health_file=%s", HEALTH_FILE)
 
 
 async def base_shutdown(ctx: dict[str, Any]) -> None:
-    """Base shutdown hook. Removes health check file. Extend in your worker."""
+    """Base shutdown hook. Removes health check file. Extend in your workers."""
     HEALTH_FILE.unlink(missing_ok=True)
     log.info("ArqWorker | shutdown")
 
 
 class BaseArqWorkerSettings:
-    """
-    Base ARQ WorkerSettings. Extend in your worker module.
+    """Base ARQ ``WorkerSettings``. Subclass and override fields in your workers module.
 
-    Usage:
+    Example::
+
         class MyWorkerSettings(BaseArqWorkerSettings):
             redis_settings = RedisSettings(host="localhost", port=6379)
             functions = [my_task1, my_task2] + CORE_FUNCTIONS
@@ -117,10 +140,15 @@ class BaseArqWorkerSettings:
 
 
 async def requeue_to_stream(ctx: dict[str, Any], stream_name: str, payload: dict[str, Any]) -> None:
-    """
-    Requeues a failed message back to a Redis Stream (for retry processing).
-    After max retries — moves to Dead Letter Queue (DLQ) instead of dropping.
-    DLQ name: {stream_name}:dlq
+    """Re-enqueue a failed message back into a Redis Stream for retry processing.
+
+    After 5 retries the message is moved to a Dead Letter Queue (DLQ) instead of
+    being dropped. DLQ key: ``{stream_name}:dlq``.
+
+    Args:
+        ctx:         ARQ worker context dict. Must contain a ``"stream_manager"`` key.
+        stream_name: Target Redis Stream name.
+        payload:     Original message payload. ``_retries`` counter is incremented in-place.
     """
     sm = ctx.get("stream_manager")
     if not sm:

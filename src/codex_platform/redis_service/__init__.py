@@ -27,24 +27,31 @@ Key Registry::
 """
 
 from .base import BaseRedisService
-from .keys import BaseRedisKey, SessionKey, StreamKey, UserKey
-from .mixins import HashMixin, JsonMixin, ListMixin, PipelineMixin, SetMixin, StreamMixin, StringMixin
+from .keys import BaseRedisKey, SessionKey, UserKey
+from .operations import (
+    HashOperations,
+    JsonOperations,
+    ListOperations,
+    PipelineOperations,
+    SetOperations,
+    StringOperations,
+    ZSetOperations,
+)
 from .service import RedisService
 
 __all__ = [
     "BaseRedisService",
     "RedisService",
-    # Mixins
-    "HashMixin",
-    "SetMixin",
-    "ListMixin",
-    "StringMixin",
-    "StreamMixin",
-    "JsonMixin",
-    "PipelineMixin",
+    # Operations
+    "HashOperations",
+    "SetOperations",
+    "ListOperations",
+    "StringOperations",
+    "ZSetOperations",
+    "JsonOperations",
+    "PipelineOperations",
     # Key Registry
     "BaseRedisKey",
     "UserKey",
     "SessionKey",
-    "StreamKey",
 ]

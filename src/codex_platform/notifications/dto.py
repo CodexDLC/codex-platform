@@ -1,18 +1,20 @@
 """
 codex_platform.notifications.dto
-==============================
-Unified notification payload contract.
+==================================
+Notification payload contracts.
 
-All notification channels expect this format.
-The caller is responsible for rendering html_content / text_content
-before passing the DTO — this library does NOT render templates.
+Three classes:
+
+  NotificationPayloadDTO     — base, always required fields
+  TemplateNotificationDTO    — Mode 1: workers fetches context from Redis, renders template
+  RenderedNotificationDTO    — Mode 2: pre-rendered HTML (e.g. from Django)
 """
 
 from __future__ import annotations
 
-from pydantic import Field
+from codex_core.core import BaseDTO
 
-from codex_platform.core.base_dto import BaseDTO
+from .channels import NotificationChannel
 
 
 class NotificationRecipient(BaseDTO):
@@ -24,16 +26,38 @@ class NotificationRecipient(BaseDTO):
 
 class NotificationPayloadDTO(BaseDTO):
     """
-    Unified notification payload — the single contract for all channels.
+    Base notification payload — identification and routing only.
 
-    The caller prepares html_content and text_content before dispatching.
-    The library delivers what it receives — no rendering, no DB lookups.
+    Do not use directly. Use TemplateNotificationDTO or RenderedNotificationDTO.
     """
 
     notification_id: str
     recipient: NotificationRecipient
+    channels: list[NotificationChannel] = [NotificationChannel.EMAIL]
     event_type: str | None = None
     subject: str | None = None
-    html_content: str | None = None
+
+
+class TemplateNotificationDTO(NotificationPayloadDTO):
+    """
+    Mode 1 — Worker renders the template itself (requires Jinja2).
+
+    context_key: Redis key where context_data is stored (JSON).
+                 Allows updating data after enqueue (e.g. reschedule).
+    template_name: Relative template path (e.g. 'booking/bk_confirmation.html').
+    """
+
+    template_name: str
+    context_key: str
+
+
+class RenderedNotificationDTO(NotificationPayloadDTO):
+    """
+    Mode 2 — Pre-rendered HTML passed directly to the workers.
+
+    Use when Django (or another layer) renders the template
+    and the workers only needs to deliver.
+    """
+
+    html_content: str
     text_content: str | None = None
-    channels: list[str] = Field(default_factory=lambda: ["email"])

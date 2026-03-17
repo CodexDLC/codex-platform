@@ -1,10 +1,10 @@
 """
-codex_platform.worker.arq.task_utils
+codex_platform.workers.arq.task_utils
 ====================================
 Utilities for writing ARQ tasks with less boilerplate.
 
 Usage:
-    from codex_platform.worker.arq import arq_task
+    from codex_platform.workers.arq import arq_task
 
     @arq_task(retry_backoff=60, max_retries=3)
     async def send_booking_notification(ctx, appointment_id: int):

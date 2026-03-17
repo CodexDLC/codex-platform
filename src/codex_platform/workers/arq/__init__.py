@@ -1,4 +1,4 @@
-"""ARQ worker infrastructure — base classes, config, task utilities."""
+"""ARQ workers infrastructure — base classes, config, task utilities."""
 
 from .base import (
     CORE_FUNCTIONS,
