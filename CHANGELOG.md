@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 
-## [Unreleased]
+## [0.1.0] - 2024-05-30
 
 ### Added
 - Initial split from monolithic `codex_tools` repository.
