@@ -50,6 +50,7 @@ Template directory structure (recommended)
 
 import logging
 import os
+from typing import Any
 
 log = logging.getLogger(__name__)
 
@@ -91,7 +92,7 @@ class TemplateRenderer:
         self.templates_dir = templates_dir
         log.info("TemplateRenderer | initialized with dir='%s'", templates_dir)
 
-    def render(self, template_name: str, context: dict[str, object]) -> str:
+    def render(self, template_name: str, context: dict[str, Any]) -> str:
         """
         Render a template with the given context.
 
@@ -108,4 +109,4 @@ class TemplateRenderer:
         """
         log.debug("TemplateRenderer | rendering template='%s'", template_name)
         template = self.env.get_template(template_name)
-        return template.render(context)
+        return str(template.render(context))
