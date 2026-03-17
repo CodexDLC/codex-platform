@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "codex-platform"
 dynamic = ["version"]
-description = "Infrastructure, background tasks (ARQ), Redis service and framework adapters for Codex"
+description = "Modular async infrastructure (Redis, Streams, ARQ, Notifications) built for Codex, designed for independent use."
 readme = { file = "README.md", content-type = "text/markdown" }
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10"

@@ -5,7 +5,7 @@
 [![CI](https://github.com/codexdlc/codex-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/codexdlc/codex-platform/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
-Infrastructure library for the **Codex WaaS toolkit**. Provides async Redis abstraction, Redis Streams event bus, ARQ background workers, and a multi-channel notification engine — each as an independently installable extra.
+`codex-platform` is a modular, async infrastructure library. Originally built as the foundation for the Codex ecosystem, it is designed from the ground up to be completely independent. You can use it in any Python project to get a typed Redis abstraction, a Redis Streams event bus, structured ARQ background workers, or a multi-channel notification engine. Every component is completely independent and can be installed as a separate extra.
 
 ---
 
