@@ -4,7 +4,8 @@ import pytest
 
 from codex_platform.redis_service.operations import (
     HashOperations,
-    JsonOperations,
+    JsonModuleOperations,
+    JsonStringOperations,
     ListOperations,
     PipelineOperations,
     SetOperations,
@@ -28,7 +29,8 @@ class TestComposition:
         assert isinstance(service.list, ListOperations)
         assert isinstance(service.set, SetOperations)
         assert isinstance(service.zset, ZSetOperations)
-        assert isinstance(service.json, JsonOperations)
+        assert isinstance(service.json_module, JsonModuleOperations)
+        assert isinstance(service.json, JsonStringOperations)
         assert isinstance(service.pipeline, PipelineOperations)
 
 

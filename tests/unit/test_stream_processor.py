@@ -3,9 +3,10 @@
 import asyncio
 from typing import Any
 
+import pytest
+
 from codex_platform.streams.processor import StreamProcessor
 
-import pytest
 pytestmark = pytest.mark.unit
 
 

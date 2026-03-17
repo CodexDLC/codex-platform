@@ -17,14 +17,14 @@ from codex_core.core import BaseDTO
 from .channels import NotificationChannel
 
 
-class NotificationRecipient(BaseDTO):
+class NotificationRecipient(BaseDTO):  # type: ignore[misc]
     """Recipient info. PII fields auto-masked in __repr__ via BaseDTO."""
 
     email: str | None = None
     phone: str | None = None
 
 
-class NotificationPayloadDTO(BaseDTO):
+class NotificationPayloadDTO(BaseDTO):  # type: ignore[misc]
     """
     Base notification payload — identification and routing only.
 

@@ -30,7 +30,8 @@ from .base import BaseRedisService
 from .keys import BaseRedisKey, SessionKey, UserKey
 from .operations import (
     HashOperations,
-    JsonOperations,
+    JsonModuleOperations,
+    JsonStringOperations,
     ListOperations,
     PipelineOperations,
     SetOperations,
@@ -48,7 +49,8 @@ __all__ = [
     "ListOperations",
     "StringOperations",
     "ZSetOperations",
-    "JsonOperations",
+    "JsonStringOperations",
+    "JsonModuleOperations",
     "PipelineOperations",
     # Key Registry
     "BaseRedisKey",

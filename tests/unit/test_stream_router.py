@@ -1,9 +1,9 @@
 """Tests for codex_platform.streams.router.StreamRouter."""
 
+import pytest
 
 from codex_platform.streams import StreamRouter
 
-import pytest
 pytestmark = pytest.mark.unit
 
 
@@ -35,6 +35,7 @@ class TestStreamRouterOn:
 
     def test_filter_func_stored(self):
         router = StreamRouter()
+
         def my_filter(p):
             return p.get("urgent", False)
 

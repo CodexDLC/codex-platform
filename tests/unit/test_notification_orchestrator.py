@@ -2,9 +2,10 @@
 
 from dataclasses import dataclass, field
 
+import pytest
+
 from codex_platform.notifications.orchestrator import BaseDeliveryOrchestrator
 
-import pytest
 pytestmark = pytest.mark.unit
 
 

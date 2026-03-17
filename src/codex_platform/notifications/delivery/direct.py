@@ -72,6 +72,7 @@ def _register_default_channels(registry: Any, config: Any) -> None:
     """Register default delivery channels from config. Override by calling registry.register() directly."""
     try:
         from codex_platform.notifications.clients.smtp import AsyncEmailClient
+
         smtp_host = getattr(config, "SMTP_HOST", "")
         if smtp_host:
             registry.register(

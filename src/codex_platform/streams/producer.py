@@ -56,7 +56,5 @@ class StreamProducer:
     def _sanitize(data: dict[str, Any]) -> dict[str, str]:
         """Convert all values to str and filter out None entries."""
         return {
-            k: ("True" if v is True else "False" if v is False else str(v))
-            for k, v in data.items()
-            if v is not None
+            k: ("True" if v is True else "False" if v is False else str(v)) for k, v in data.items() if v is not None
         }

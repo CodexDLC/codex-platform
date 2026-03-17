@@ -55,13 +55,15 @@ class TestSanitize:
         assert result["price"] == "9.99"
 
     def test_mixed_types(self):
-        result = StreamProducer._sanitize({
-            "name": "test",
-            "active": True,
-            "deleted": False,
-            "extra": None,
-            "count": 5,
-        })
+        result = StreamProducer._sanitize(
+            {
+                "name": "test",
+                "active": True,
+                "deleted": False,
+                "extra": None,
+                "count": 5,
+            }
+        )
         assert result == {
             "name": "test",
             "active": "True",
@@ -78,6 +80,7 @@ class TestErrorHandling:
 
         async def broken_xadd(*args, **kwargs):
             from redis.exceptions import ConnectionError
+
             raise ConnectionError("connection lost")
 
         monkeypatch.setattr(redis_client, "xadd", broken_xadd)

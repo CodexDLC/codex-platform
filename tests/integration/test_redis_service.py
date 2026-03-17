@@ -17,7 +17,6 @@ from codex_platform.redis_service.operations import HashOperations, StringOperat
 from codex_platform.redis_service.operations.pipeline import PipelineOperations
 from codex_platform.redis_service.service import RedisService
 
-
 # ---------------------------------------------------------------------------
 # RedisService composition
 # ---------------------------------------------------------------------------

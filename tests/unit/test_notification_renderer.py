@@ -1,6 +1,5 @@
 """Tests for codex_platform.notifications.renderer."""
 
-
 import pytest
 
 try:
@@ -27,9 +26,7 @@ class TestTemplateRenderer:
 
     def test_render_with_complex_context(self, tmp_path):
         template_file = tmp_path / "booking.html"
-        template_file.write_text(
-            "<p>Booking #{{ booking_id }} for {{ customer }}</p>"
-        )
+        template_file.write_text("<p>Booking #{{ booking_id }} for {{ customer }}</p>")
 
         renderer = TemplateRenderer(str(tmp_path))
         result = renderer.render("booking.html", {"booking_id": 42, "customer": "Alice"})
@@ -64,5 +61,6 @@ class TestTemplateRenderer:
     def test_render_missing_template_raises(self, tmp_path):
         renderer = TemplateRenderer(str(tmp_path))
         from jinja2 import TemplateNotFound
+
         with pytest.raises(TemplateNotFound):
             renderer.render("nonexistent.html", {})

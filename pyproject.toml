@@ -88,6 +88,7 @@ module = [
     "django.*",
     "codex_platform.settings",
     "codex_platform.settings.*",
+    "codex_core.*",
 ]
 ignore_missing_imports = true
 

@@ -18,6 +18,7 @@ log = logging.getLogger(__name__)
 
 try:
     from redis.commands.json.path import Path as JsonPath  # noqa: F401
+
     _JSON_AVAILABLE = True
 except ImportError:
     _JSON_AVAILABLE = False
@@ -41,10 +42,7 @@ class JsonModuleOperations:
 
     def _require_json(self) -> None:
         if not _JSON_AVAILABLE:
-            raise RuntimeError(
-                "RedisJSON module not available in redis-py. "
-                "Install: pip install redis[hiredis]"
-            )
+            raise RuntimeError("RedisJSON module not available in redis-py. Install: pip install redis[hiredis]")
 
     @catch_redis_errors
     async def set(self, key: str, path: str, obj: Any, nx: bool = False, xx: bool = False) -> bool:

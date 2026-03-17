@@ -1,9 +1,9 @@
 """Tests for codex_platform.streams.consumer.StreamConsumer and StreamEvent."""
 
+import pytest
 
 from codex_platform.streams.consumer import StreamConsumer, StreamEvent
 
-import pytest
 pytestmark = pytest.mark.unit
 
 

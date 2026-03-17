@@ -17,7 +17,6 @@ from redis.asyncio import Redis
 from codex_platform.streams.consumer import StreamConsumer
 from codex_platform.streams.producer import StreamProducer
 
-
 STREAM = "integration:stream:test"
 GROUP = "test_group"
 CONSUMER = "test_consumer"

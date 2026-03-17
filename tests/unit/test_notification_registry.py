@@ -1,8 +1,9 @@
 """Tests for codex_platform.notifications.registry."""
 
+import pytest
+
 from codex_platform.notifications.registry import ChannelRegistry
 
-import pytest
 pytestmark = pytest.mark.unit
 
 

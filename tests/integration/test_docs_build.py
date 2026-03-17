@@ -37,10 +37,7 @@ def test_mkdocs_build_succeeds() -> None:
         )
 
     combined = result.stdout + result.stderr
-    error_lines = [
-        line for line in combined.splitlines()
-        if line.strip().startswith("ERROR")
-    ]
+    error_lines = [line for line in combined.splitlines() if line.strip().startswith("ERROR")]
 
     assert result.returncode == 0, (
         f"mkdocs build failed (returncode={result.returncode}).\n\n"
@@ -48,7 +45,7 @@ def test_mkdocs_build_succeeds() -> None:
         f"--- STDERR ---\n{result.stderr}"
     )
     assert not error_lines, (
-        f"mkdocs build produced ERROR-level messages:\n"
+        "mkdocs build produced ERROR-level messages:\n"
         + "\n".join(error_lines)
         + f"\n\n--- Full output ---\n{combined}"
     )

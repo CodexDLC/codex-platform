@@ -44,9 +44,8 @@ class ArqNotificationAdapter(NotificationAdapter):
     def enqueue(self, task_name: str, payload: dict[str, Any]) -> str | None:
         """Sync enqueue — wraps async via asyncio. Use enqueue_async in async contexts."""
         import asyncio
-        return asyncio.get_event_loop().run_until_complete(
-            self.enqueue_async(task_name, payload)
-        )
+
+        return asyncio.get_event_loop().run_until_complete(self.enqueue_async(task_name, payload))
 
     async def enqueue_async(self, task_name: str, payload: dict[str, Any]) -> str | None:
         """
