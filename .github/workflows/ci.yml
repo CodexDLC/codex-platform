@@ -88,4 +88,4 @@ jobs:
       - name: Run integration tests
         env:
           REDIS_URL: redis://localhost:6379/0
-        run: uv run pytest tests/ -m "integration" -v --tb=short
+        run: uv run pytest tests/ -m "integration" -v --tb=short --no-cov

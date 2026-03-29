@@ -24,6 +24,7 @@ Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 - Kept docs-build integration tests aligned with CI by installing docs dependencies in the integration test job.
 - Updated landing-page documentation links and examples to match the current docs structure and public API.
 - Fixed `BaseWorkerConfig` to inherit settings from `codex-core` correctly and to build ARQ Redis settings from the actual shared Redis fields.
+- Stopped standalone integration test runs from failing the release coverage gate by disabling coverage collection for integration-only runs in CI and `tools/dev/check.py`.
 
 ## [0.1.0] - 2024-05-30
 
