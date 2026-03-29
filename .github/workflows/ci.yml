@@ -51,8 +51,8 @@ jobs:
         with:
           version: "0.10.7"
 
-      - name: Sync dev environment
-        run: uv sync --locked --extra dev
+      - name: Sync dev + docs environment
+        run: uv sync --locked --extra dev --extra docs
 
       - name: Run unit tests
         run: uv run pytest tests/ -m "unit" -v --tb=short
