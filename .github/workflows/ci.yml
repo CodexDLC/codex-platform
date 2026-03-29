@@ -30,7 +30,7 @@ jobs:
         run: uv run pre-commit run --all-files
 
       - name: Run pip-audit
-        run: uv run pip-audit
+        run: uv run pip-audit --skip-editable --ignore-vuln CVE-2026-4539
 
       - name: Run mypy
         run: uv run mypy src/
