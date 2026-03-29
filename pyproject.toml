@@ -105,9 +105,28 @@ ignore_errors = true
 testpaths = ["tests"]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
+addopts = "--cov=src/codex_platform --cov-report=term-missing"
 markers = [
     "unit: unit tests (no external dependencies)",
     "integration: integration tests (may require external services)",
+]
+
+[tool.coverage.run]
+source = ["src/codex_platform"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 90
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "except ImportError:",
+    "raise ImportError",
+    "if TYPE_CHECKING:",
 ]
 
 [tool.bandit]

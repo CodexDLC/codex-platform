@@ -3,7 +3,7 @@ codex_platform.workers.arq.config
 ================================
 Base workers configuration with SMTP and ARQ fields.
 
-Extends BaseCommonSettings from codex_platform.settings.
+Extends BaseCommonSettings from codex_core.settings.
 Maps standard Django .env names to workers-friendly fields.
 
 Usage:
@@ -17,9 +17,8 @@ Usage:
 
 from typing import Any
 
+from codex_core.settings import BaseCommonSettings
 from pydantic import Field
-
-from codex_platform.settings import BaseCommonSettings
 
 
 class BaseWorkerConfig(BaseCommonSettings):
@@ -61,7 +60,7 @@ class BaseWorkerConfig(BaseCommonSettings):
         from arq.connections import RedisSettings
 
         return RedisSettings(
-            host=self.effective_redis_host,
+            host=self.redis_host,
             port=self.redis_port,
             password=self.redis_password,
         )

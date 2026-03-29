@@ -15,6 +15,7 @@ Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 - Raised the supported Python baseline to 3.12 and simplified code paths that only existed for Python 3.10/3.11 compatibility.
 - Reused shared developer tooling from `codex-core` for project checks and project-tree generation, with `tools/dev/check.py` configured via the new `RUN_*` policy flags.
 - Pinned the `codex-core` dependency to the supported `0.2.x` series.
+- Enabled the shared pytest/coverage mode in `pyproject.toml` so local runs, CI, and `tools/dev/check.py` all collect coverage consistently.
 
 ### Removed
 - Duplicated `docs/ru/api` reference pages now that API documentation is published in English only.
@@ -22,6 +23,7 @@ Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 ### Fixed
 - Kept docs-build integration tests aligned with CI by installing docs dependencies in the integration test job.
 - Updated landing-page documentation links and examples to match the current docs structure and public API.
+- Fixed `BaseWorkerConfig` to inherit settings from `codex-core` correctly and to build ARQ Redis settings from the actual shared Redis fields.
 
 ## [0.1.0] - 2024-05-30
 

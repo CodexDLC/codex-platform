@@ -31,8 +31,8 @@ class TestArqTask:
         with pytest.raises(Retry) as exc_info:
             await failing_task({"job_try": 2})
 
-        # defer = job_try * retry_backoff = 2 * 10 = 20
-        assert exc_info.value.defer == 20
+        # ARQ stores defer as milliseconds in defer_score.
+        assert exc_info.value.defer_score == 20_000
 
     async def test_exception_at_max_retries_returns_none(self):
         @arq_task(retry_backoff=10, max_retries=3)
@@ -58,7 +58,7 @@ class TestArqTask:
         with pytest.raises(Retry) as exc_info:
             await retry_task({"job_try": 1})
 
-        assert exc_info.value.defer == 99
+        assert exc_info.value.defer_score == 99_000
 
     async def test_default_job_try_is_one(self):
         @arq_task(retry_backoff=10, max_retries=5)
@@ -69,7 +69,7 @@ class TestArqTask:
         with pytest.raises(Retry) as exc_info:
             await failing_task({})
 
-        assert exc_info.value.defer == 10  # 1 * 10
+        assert exc_info.value.defer_score == 10_000  # 1 * 10 seconds
 
     async def test_log_args_does_not_affect_result(self):
         @arq_task(log_args=True)
@@ -94,4 +94,4 @@ class TestArqTask:
         with pytest.raises(Retry) as exc_info:
             await failing_task({"job_try": 1})
 
-        assert exc_info.value.defer == 30  # 1 * 30
+        assert exc_info.value.defer_score == 30_000  # 1 * 30 seconds
