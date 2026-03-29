@@ -12,23 +12,36 @@
 ## Install
 
 ```bash
-# Core only
-pip install codex-platform
+# codex-platform 0.2.x
+pip install "codex-platform>=0.2.0,<0.3.0"
 
 # With Redis support
-pip install "codex-platform[redis]"
+pip install "codex-platform[redis]>=0.2.0,<0.3.0"
 
 # With ARQ background workers
-pip install "codex-platform[arq]"
+pip install "codex-platform[arq]>=0.2.0,<0.3.0"
 
 # With async SMTP notifications
-pip install "codex-platform[notifications]"
+pip install "codex-platform[notifications]>=0.2.0,<0.3.0"
 
 # Redis Streams
-pip install "codex-platform[streams]"
+pip install "codex-platform[streams]>=0.2.0,<0.3.0"
 
 # Everything
-pip install "codex-platform[all]"
+pip install "codex-platform[all]>=0.2.0,<0.3.0"
+```
+
+Requires Python 3.12 or newer.
+Installs `codex-core>=0.2.0,<0.3.0` automatically as a dependency.
+
+## Development
+
+```bash
+uv sync --extra dev
+uv run pytest
+uv run mypy src/
+uv run pre-commit run --all-files
+uv build --no-sources
 ```
 
 ## Quick Start
@@ -61,4 +74,14 @@ Full docs with architecture, API reference, and data flow diagrams:
 
 ## Part of the Codex ecosystem
 
-[codex-core](https://github.com/codexdlc/codex-core) · **codex-platform** · [codexdlc](https://github.com/codexdlc)
+| Package | Role |
+| :--- | :--- |
+| [codex-core](https://github.com/codexdlc/codex-core) | Foundation — immutable DTOs, PII masking, env settings |
+| **codex-platform** | Infrastructure — Redis, Streams, ARQ workers, Notifications |
+| [codex-ai](https://github.com/codexdlc/codex-ai) | LLM layer — unified async interface for OpenAI, Gemini, Anthropic |
+| [codex-services](https://github.com/codexdlc/codex-services) | Business logic — Booking engine, CRM, Calendar |
+
+Each library is **fully standalone** — install only what your project needs.
+Together they form the backbone of **[codex-bot](https://github.com/codexdlc/codex-bot)**
+(Telegram AI-agent infrastructure built on aiogram) and
+**[codex-django](https://github.com/codexdlc/codex-django)** (Django integration layer).

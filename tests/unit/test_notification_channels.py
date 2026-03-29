@@ -1,15 +1,6 @@
 """Tests for codex_platform.notifications.channels."""
 
-import sys
-from enum import Enum
-
-if sys.version_info >= (3, 11):
-    from enum import StrEnum
-else:
-    # Fallback for Python 3.10
-    class StrEnum(str, Enum):
-        pass
-
+from enum import StrEnum
 
 import pytest
 
@@ -20,13 +11,7 @@ pytestmark = pytest.mark.unit
 
 class TestNotificationChannel:
     def test_is_str_enum(self):
-        # On Python 3.11+ this is enum.StrEnum.
-        # On Python 3.10 this is our fallback StrEnum which is just (str, Enum).
-        if sys.version_info >= (3, 11):
-            assert issubclass(NotificationChannel, StrEnum)
-        else:
-            assert issubclass(NotificationChannel, str)
-            assert issubclass(NotificationChannel, Enum)
+        assert issubclass(NotificationChannel, StrEnum)
 
     def test_has_email(self):
         assert NotificationChannel.EMAIL == "email"

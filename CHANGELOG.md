@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 
+## [0.2.0] - 2026-03-29
+
+### Added
+- `SiteSettingsManager` as a public Redis manager for shared `site_settings` hash access across services.
+- `uv.lock` for reproducible local and CI environments.
+
+### Changed
+- Standardized the documentation site around the shared Codex MkDocs layout: English-only API reference, bilingual architecture guides, teal/cyan theme, and shared extra CSS.
+- Migrated CI, docs deployment, publishing, and local developer workflows from ad-hoc `pip` installs to `uv`.
+- Raised the supported Python baseline to 3.12 and simplified code paths that only existed for Python 3.10/3.11 compatibility.
+- Reused shared developer tooling from `codex-core` for project checks and project-tree generation, with `tools/dev/check.py` configured via the new `RUN_*` policy flags.
+- Pinned the `codex-core` dependency to the supported `0.2.x` series.
+
+### Removed
+- Duplicated `docs/ru/api` reference pages now that API documentation is published in English only.
+
+### Fixed
+- Kept docs-build integration tests aligned with CI by installing docs dependencies in the integration test job.
+- Updated landing-page documentation links and examples to match the current docs structure and public API.
+
 ## [0.1.0] - 2024-05-30
 
 ### Added

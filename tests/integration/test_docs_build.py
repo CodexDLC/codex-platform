@@ -4,11 +4,11 @@ Integration test: verifies that mkdocs build completes without errors.
 Catches:
 - Nav references to non-existent files       → ERROR + returncode != 0
 - mkdocstrings import errors (bad module)     → ERROR + returncode != 0
-- i18n plugin misconfiguration               → ERROR + returncode != 0
+- invalid MkDocs/plugin configuration         → ERROR + returncode != 0
 
-Note: --strict is intentionally NOT used because mkdocs-static-i18n + mkdocstrings
-produce known informational warnings (e.g. griffe docstring format hints,
-autorefs duplicate anchors across i18n builds). These do not affect site correctness.
+Note: --strict is intentionally NOT used because mkdocstrings may emit
+informational warnings (for example griffe docstring format hints).
+These do not affect site correctness.
 The build is considered healthy if returncode == 0 and no ERROR lines are present.
 """
 

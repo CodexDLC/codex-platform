@@ -28,6 +28,7 @@ Key Registry::
 
 from .base import BaseRedisService
 from .keys import BaseRedisKey, SessionKey, UserKey
+from .managers import BaseRedisManager, SiteSettingsManager
 from .operations import (
     HashOperations,
     JsonModuleOperations,
@@ -43,6 +44,9 @@ from .service import RedisService
 __all__ = [
     "BaseRedisService",
     "RedisService",
+    # Managers
+    "BaseRedisManager",
+    "SiteSettingsManager",
     # Operations
     "HashOperations",
     "SetOperations",

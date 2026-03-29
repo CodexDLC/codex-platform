@@ -15,7 +15,7 @@ Usage:
 
 import logging
 import pathlib
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from arq.connections import ArqRedis, RedisSettings, create_pool
@@ -157,7 +157,7 @@ async def requeue_to_stream(ctx: dict[str, Any], stream_name: str, payload: dict
     retries = int(payload.get("_retries", 0)) + 1
     if retries > 5:
         dlq_name = f"{stream_name}:dlq"
-        payload["_failed_at"] = datetime.now(timezone.utc).isoformat()
+        payload["_failed_at"] = datetime.now(UTC).isoformat()
         payload["_original_stream"] = stream_name
         await sm.add_event(dlq_name, payload)
         log.error("requeue_to_stream | max retries reached | moved to DLQ '%s'", dlq_name)

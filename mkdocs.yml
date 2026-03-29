@@ -7,21 +7,23 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: deep purple
-      accent: purple
+      primary: teal
+      accent: cyan
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: deep purple
-      accent: purple
+      primary: teal
+      accent: cyan
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
+    - navigation.expand
     - navigation.top
     - navigation.breadcrumbs
     - search.suggest
@@ -33,13 +35,9 @@ extra:
   version:
     provider: mike
     default: latest
-  alternate:
-    - name: English
-      link: /en/
-      lang: en
-    - name: Русский
-      link: /ru/
-      lang: ru
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
   - pymdownx.superfences:
@@ -56,26 +54,6 @@ markdown_extensions:
 plugins:
   - search
   - include-markdown
-  - i18n:
-      docs_structure: folder
-      languages:
-        - locale: en
-          default: true
-          name: English
-          build: true
-        - locale: ru
-          name: Русский
-          build: true
-          nav_translations:
-            Home: Главная
-            Architecture: Архитектура
-            Notifications: Уведомления
-            Overview: Обзор
-            Data Flow: Поток данных
-            Redis Service: Redis Сервис
-            Streams: Потоки
-            Workers (ARQ): Воркеры (ARQ)
-            Changelog: История изменений
   - mkdocstrings:
       handlers:
         python:
@@ -84,6 +62,7 @@ plugins:
             show_source: true
             show_root_heading: true
             show_root_full_path: false
+            show_category_heading: true
             show_symbol_type_heading: true
             show_symbol_type_toc: true
             docstring_style: google
@@ -91,57 +70,72 @@ plugins:
 
 nav:
   - Home: index.md
-  - Architecture:
-      - Notifications:
-          - Overview: architecture/notifications/README.md
-          - Data Flow: architecture/notifications/data_flow.md
-      - Redis Service:
-          - Overview: architecture/redis_service/README.md
-          - Data Flow: architecture/redis_service/data_flow.md
-      - Streams:
-          - Overview: architecture/streams/README.md
-          - Data Flow: architecture/streams/data_flow.md
-      - Workers (ARQ):
-          - Overview: architecture/workers/README.md
-          - Data Flow: architecture/workers/data_flow.md
+  - Guide (EN):
+      - Architecture:
+          - Notifications:
+              - Overview: en/architecture/notifications/README.md
+              - Data Flow: en/architecture/notifications/data_flow.md
+          - Redis Service:
+              - Overview: en/architecture/redis_service/README.md
+              - Data Flow: en/architecture/redis_service/data_flow.md
+          - Streams:
+              - Overview: en/architecture/streams/README.md
+              - Data Flow: en/architecture/streams/data_flow.md
+          - Workers (ARQ):
+              - Overview: en/architecture/workers/README.md
+              - Data Flow: en/architecture/workers/data_flow.md
+  - Руководство (RU):
+      - Архитектура:
+          - Уведомления:
+              - Обзор: ru/architecture/notifications/README.md
+              - Поток данных: ru/architecture/notifications/data_flow.md
+          - Redis Сервис:
+              - Обзор: ru/architecture/redis_service/README.md
+              - Поток данных: ru/architecture/redis_service/data_flow.md
+          - Потоки:
+              - Обзор: ru/architecture/streams/README.md
+              - Поток данных: ru/architecture/streams/data_flow.md
+          - Воркеры (ARQ):
+              - Обзор: ru/architecture/workers/README.md
+              - Поток данных: ru/architecture/workers/data_flow.md
   - API Reference:
-      - Overview: api/index.md
+      - Overview: en/api/index.md
       - Notifications:
-          - Overview: api/notifications/index.md
-          - DTOs: api/notifications/dto.md
-          - Channels: api/notifications/channels.md
-          - Orchestrator: api/notifications/orchestrator.md
-          - Registry: api/notifications/registry.md
-          - Renderer: api/notifications/renderer.md
+          - Overview: en/api/notifications/index.md
+          - DTOs: en/api/notifications/dto.md
+          - Channels: en/api/notifications/channels.md
+          - Orchestrator: en/api/notifications/orchestrator.md
+          - Registry: en/api/notifications/registry.md
+          - Renderer: en/api/notifications/renderer.md
           - Delivery:
-              - Base Protocol: api/notifications/delivery/base.md
-              - ARQ: api/notifications/delivery/arq.md
-              - Direct: api/notifications/delivery/direct.md
+              - Base Protocol: en/api/notifications/delivery/base.md
+              - ARQ: en/api/notifications/delivery/arq.md
+              - Direct: en/api/notifications/delivery/direct.md
       - Redis Service:
-          - Overview: api/redis_service/index.md
-          - Base: api/redis_service/base.md
-          - Keys: api/redis_service/keys.md
-          - Service: api/redis_service/service.md
+          - Overview: en/api/redis_service/index.md
+          - Base: en/api/redis_service/base.md
+          - Keys: en/api/redis_service/keys.md
+          - Service: en/api/redis_service/service.md
           - Operations:
-              - Hash: api/redis_service/operations/hash.md
-              - JSON (String): api/redis_service/operations/json_string.md
-              - JSON (Module): api/redis_service/operations/json_module.md
-              - List: api/redis_service/operations/list_.md
-              - Pipeline: api/redis_service/operations/pipeline.md
-              - Set: api/redis_service/operations/set_.md
-              - String: api/redis_service/operations/string.md
-              - ZSet: api/redis_service/operations/zset.md
+              - Hash: en/api/redis_service/operations/hash.md
+              - JSON (String): en/api/redis_service/operations/json_string.md
+              - JSON (Module): en/api/redis_service/operations/json_module.md
+              - List: en/api/redis_service/operations/list_.md
+              - Pipeline: en/api/redis_service/operations/pipeline.md
+              - Set: en/api/redis_service/operations/set_.md
+              - String: en/api/redis_service/operations/string.md
+              - ZSet: en/api/redis_service/operations/zset.md
       - Streams:
-          - Overview: api/streams/index.md
-          - Producer: api/streams/producer.md
-          - Consumer: api/streams/consumer.md
-          - Dispatcher: api/streams/dispatcher.md
-          - Processor: api/streams/processor.md
-          - Router: api/streams/router.md
+          - Overview: en/api/streams/index.md
+          - Producer: en/api/streams/producer.md
+          - Consumer: en/api/streams/consumer.md
+          - Dispatcher: en/api/streams/dispatcher.md
+          - Processor: en/api/streams/processor.md
+          - Router: en/api/streams/router.md
       - Workers (ARQ):
-          - Overview: api/workers/arq/index.md
-          - Base: api/workers/arq/base.md
-          - Config: api/workers/arq/config.md
-          - Task Utils: api/workers/arq/task_utils.md
-          - Types: api/workers/arq/types.md
+          - Overview: en/api/workers/arq/index.md
+          - Base: en/api/workers/arq/base.md
+          - Config: en/api/workers/arq/config.md
+          - Task Utils: en/api/workers/arq/task_utils.md
+          - Types: en/api/workers/arq/types.md
   - Changelog: changelog.md
