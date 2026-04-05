@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 
+## [0.3.0] - 2026-04-05
+
+### Changed
+- Raised the `codex-core` requirement to `>=0.3.0,<0.10.0` so the package tracks the new core baseline while remaining compatible through the `0.9.x` series.
+- Updated the documented install examples to the `codex-platform 0.3.x` release line.
+
 ## [0.2.0] - 2026-03-29
 
 ### Added

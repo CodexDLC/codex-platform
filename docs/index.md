@@ -9,27 +9,27 @@ Built to be dropped into any Python 3.12+ service as a set of composable, indepe
 ## Install
 
 ```bash
-# codex-platform 0.2.x
-pip install "codex-platform>=0.2.0,<0.3.0"
+# codex-platform 0.3.x
+pip install "codex-platform>=0.3.0,<0.4.0"
 
 # With Redis support
-pip install "codex-platform[redis]>=0.2.0,<0.3.0"
+pip install "codex-platform[redis]>=0.3.0,<0.4.0"
 
 # With ARQ worker support
-pip install "codex-platform[arq]>=0.2.0,<0.3.0"
+pip install "codex-platform[arq]>=0.3.0,<0.4.0"
 
 # With async SMTP notifications
-pip install "codex-platform[notifications]>=0.2.0,<0.3.0"
+pip install "codex-platform[notifications]>=0.3.0,<0.4.0"
 
 # Redis Streams
-pip install "codex-platform[streams]>=0.2.0,<0.3.0"
+pip install "codex-platform[streams]>=0.3.0,<0.4.0"
 
 # Everything
-pip install "codex-platform[all]>=0.2.0,<0.3.0"
+pip install "codex-platform[all]>=0.3.0,<0.4.0"
 ```
 
 Requires Python 3.12 or newer.
-Installs `codex-core>=0.2.0,<0.3.0` automatically as a dependency.
+Installs `codex-core>=0.3.0,<0.10.0` automatically as a dependency.
 
 ## Quick Start
 
