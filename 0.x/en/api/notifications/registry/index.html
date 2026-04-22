@@ -1951,10 +1951,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#codex_platform.notifications.registry--smtpchannel-sendgridchannel" class="md-nav__link">
+  <a href="#codex_platform.notifications.registry--smtpchannel-sendgridchannel-only-those-whose-config-is-populated" class="md-nav__link">
     <span class="md-ellipsis">
       
-        → [SmtpChannel, SendGridChannel] (только те, чей конфиг заполнен)
+        → [SmtpChannel, SendGridChannel] (only those whose config is populated)
       
     </span>
   </a>
@@ -3215,10 +3215,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#codex_platform.notifications.registry--smtpchannel-sendgridchannel" class="md-nav__link">
+  <a href="#codex_platform.notifications.registry--smtpchannel-sendgridchannel-only-those-whose-config-is-populated" class="md-nav__link">
     <span class="md-ellipsis">
       
-        → [SmtpChannel, SendGridChannel] (только те, чей конфиг заполнен)
+        → [SmtpChannel, SendGridChannel] (only those whose config is populated)
       
     </span>
   </a>
@@ -3347,7 +3347,7 @@
 registry.register("smtp", lambda cfg: SmtpChannel(cfg) if cfg.SMTP_HOST else None)
 registry.register("sendgrid", lambda cfg: SendGridChannel(cfg) if cfg.SENDGRID_API_KEY else None)
 channels = registry.build_channels(settings)</p>
-<h3 id="codex_platform.notifications.registry--smtpchannel-sendgridchannel">→ [SmtpChannel, SendGridChannel]  (только те, чей конфиг заполнен)</h3>
+<h3 id="codex_platform.notifications.registry--smtpchannel-sendgridchannel-only-those-whose-config-is-populated">→ [SmtpChannel, SendGridChannel]  (only those whose config is populated)</h3>
 </details>
 
 

@@ -4089,8 +4089,8 @@
 
         <h3 id="codex_platform.streams--codex_platformstreams">codex_platform.streams</h3>
 <p>Redis Streams broker — event sourcing / pub-sub layer.</p>
-<p>Отдельный модуль от redis_service.
-Stream — это брокер сообщений, а не структура данных.</p>
+<p>Separate module from redis_service.
+Streams are a message broker, not a data structure.</p>
 <p>Components:
 - <code>StreamProducer</code>   — XADD (publish events)
 - <code>StreamConsumer</code>   — XREADGROUP + XACK (low-level read)
