@@ -8,7 +8,7 @@ Usage:
     registry.register("smtp", lambda cfg: SmtpChannel(cfg) if cfg.SMTP_HOST else None)
     registry.register("sendgrid", lambda cfg: SendGridChannel(cfg) if cfg.SENDGRID_API_KEY else None)
     channels = registry.build_channels(settings)
-    # → [SmtpChannel, SendGridChannel]  (только те, чей конфиг заполнен)
+    # → [SmtpChannel, SendGridChannel]  (only those whose config is populated)
 """
 
 import logging

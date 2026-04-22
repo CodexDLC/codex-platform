@@ -10,4 +10,7 @@ class CheckRunner(BaseCheckRunner):
 
 
 if __name__ == "__main__":
+    import os
+
+    os.system("cls" if os.name == "nt" else "clear")
     CheckRunner(Path(__file__).parent.parent.parent).main()

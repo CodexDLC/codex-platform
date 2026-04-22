@@ -40,7 +40,7 @@ class BaseWorkerConfig(BaseCommonSettings):
                 env_file = ".env"
     """
 
-    # --- Email (SMTP) — маппинг Django env names ---
+    # --- Email (SMTP) — Django env name mapping ---
     SMTP_HOST: str = Field(default="localhost", alias="EMAIL_HOST")
     SMTP_PORT: int = Field(default=465, alias="EMAIL_PORT")
     SMTP_USER: str | None = Field(default=None, alias="EMAIL_HOST_USER")

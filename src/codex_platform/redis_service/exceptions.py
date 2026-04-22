@@ -1,20 +1,20 @@
 """
 codex_platform.redis_service.exceptions
 =======================================
-Кастомные исключения для работы с Redis.
+Custom exceptions for the Redis service layer.
 
-Используй эти классы в бизнес-логике вместо redis.exceptions.*
-чтобы не зависеть от внутренностей redis-py.
+Use these classes in business logic instead of redis.exceptions.*
+to avoid coupling to redis-py internals.
 """
 
 
 class RedisServiceError(Exception):
-    """Базовый класс для всех ошибок слоя Redis."""
+    """Base class for all Redis layer errors."""
 
 
 class RedisConnectionError(RedisServiceError):
-    """Ошибки сети: таймауты, недоступность сервера, обрывы связи."""
+    """Network errors: timeouts, server unavailability, connection drops."""
 
 
 class RedisDataError(RedisServiceError):
-    """Ошибки контента: битый JSON, несовпадение типов."""
+    """Content errors: malformed JSON, type mismatches."""

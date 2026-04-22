@@ -1,10 +1,16 @@
+from unittest.mock import MagicMock
+
 import fakeredis
 import fakeredis.aioredis
 import pytest
+from redis.exceptions import ConnectionError, RedisError
 
+from codex_platform.redis_service.exceptions import RedisConnectionError, RedisServiceError
 from codex_platform.redis_service.operations.hash import HashOperations
 from codex_platform.redis_service.operations.sync_hash import SyncHashOperations
 from codex_platform.redis_service.operations.sync_string import SyncStringOperations
+
+pytestmark = pytest.mark.unit
 
 
 @pytest.fixture
@@ -52,8 +58,23 @@ def test_sync_hash_operations(sync_hash_ops):
     sync_hash_ops.set_fields("hkey", {"f2": "v2", "f3": "v3"})
     assert sync_hash_ops.get_all("hkey") == {"f1": "v1", "f2": "v2", "f3": "v3"}
 
+    assert sync_hash_ops.get_fields("hkey", "f1", "f2", "f4") == ["v1", "v2", None]
+
+    assert sync_hash_ops.exists_field("hkey", "f3") is True
+    assert sync_hash_ops.exists_field("hkey", "f4") is False
+
+    assert sorted(sync_hash_ops.keys("hkey")) == ["f1", "f2", "f3"]
+    assert sorted(sync_hash_ops.values("hkey")) == ["v1", "v2", "v3"]
+    assert sync_hash_ops.length("hkey") == 3
+
+    sync_hash_ops.set_field("hkey", "num", "10")
+    assert sync_hash_ops.increment("hkey", "num", 5) == 15
+
     assert sync_hash_ops.delete_field("hkey", "f1", "f2") == 2
-    assert sync_hash_ops.get_all("hkey") == {"f3": "v3"}
+    assert sync_hash_ops.get_all("hkey") == {"f3": "v3", "num": "15"}
+
+    sync_hash_ops.delete("hkey")
+    assert sync_hash_ops.get_all("hkey") is None
 
 
 def test_sync_hash_operations_encoder(sync_hash_ops):
@@ -62,6 +83,21 @@ def test_sync_hash_operations_encoder(sync_hash_ops):
 
     sync_hash_ops.set_fields("hkey2", {"f1": "v1", "f2": "v2"}, encoder=test_encoder)
     assert sync_hash_ops.get_all("hkey2") == {"f1": "enc_v1", "f2": "enc_v2"}
+
+
+def test_sync_operations_error_handling():
+    mock_client = MagicMock()
+    mock_client.get.side_effect = ConnectionError("Fail")
+    mock_client.hget.side_effect = RedisError("Fail")
+
+    string_ops = SyncStringOperations(mock_client)
+    hash_ops = SyncHashOperations(mock_client)
+
+    with pytest.raises(RedisConnectionError):
+        string_ops.get("key")
+
+    with pytest.raises(RedisServiceError):
+        hash_ops.get_field("key", "field")
 
 
 @pytest.mark.asyncio

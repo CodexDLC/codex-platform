@@ -3,8 +3,8 @@ codex_platform.streams
 =============================
 Redis Streams broker — event sourcing / pub-sub layer.
 
-Отдельный модуль от redis_service.
-Stream — это брокер сообщений, а не структура данных.
+Separate module from redis_service.
+Streams are a message broker, not a data structure.
 
 Components:
 - ``StreamProducer``   — XADD (publish events)

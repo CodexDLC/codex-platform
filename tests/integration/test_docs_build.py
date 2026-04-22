@@ -14,6 +14,7 @@ The build is considered healthy if returncode == 0 and no ERROR lines are presen
 
 import pathlib
 import subprocess
+import sys
 import tempfile
 
 import pytest
@@ -30,7 +31,7 @@ def test_mkdocs_build_succeeds() -> None:
     """
     with tempfile.TemporaryDirectory() as tmp_site:
         result = subprocess.run(
-            ["mkdocs", "build", "--site-dir", tmp_site],
+            [sys.executable, "-m", "mkdocs", "build", "--site-dir", tmp_site],
             capture_output=True,
             text=True,
             cwd=PROJECT_ROOT,
