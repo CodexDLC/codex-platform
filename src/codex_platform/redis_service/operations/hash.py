@@ -6,6 +6,7 @@ Redis Hash operations.
 
 import json
 import logging
+from collections.abc import Callable
 from typing import Any
 
 from redis.asyncio import Redis
@@ -99,12 +100,20 @@ class HashOperations:
         await self.client.hset(real_key, field, value)
 
     @catch_redis_errors
-    async def set_fields(self, key: "str | BaseRedisKey", data: dict[str, Any], **kwargs: Any) -> None:
+    async def set_fields(
+        self,
+        key: "str | BaseRedisKey",
+        data: dict[str, Any],
+        *,
+        encoder: Callable[[Any], Any] | None = None,
+        **kwargs: Any,
+    ) -> None:
         """Set multiple hash fields in a single call (HSET mapping).
 
         Args:
             key: Redis key or a ``BaseRedisKey`` instance.
             data: Mapping of ``{field: value}`` pairs to write.
+            encoder: Optional callable to transform values before setting.
             **kwargs: Extra parameters forwarded to ``resolve_key``.
 
         Raises:
@@ -112,6 +121,8 @@ class HashOperations:
             RedisServiceError: Redis operation failure.
         """
         real_key = resolve_key(key, **kwargs)
+        if encoder:
+            data = {k: encoder(v) for k, v in data.items()}
         await self.client.hset(real_key, mapping=data)
 
     @catch_redis_errors

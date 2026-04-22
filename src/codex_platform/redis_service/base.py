@@ -52,6 +52,37 @@ def catch_redis_errors(func: Callable[..., Any]) -> Callable[..., Any]:
     return wrapper
 
 
+def catch_redis_errors_sync(func: Callable[..., Any]) -> Callable[..., Any]:
+    """Decorator that converts redis-py exceptions into typed domain exceptions for sync functions.
+
+    Never suppresses errors — always re-raises as a domain exception.
+    Preserves the original traceback via ``raise ... from e``.
+
+    Catches:
+        - ``ConnectionError``, ``TimeoutError`` → :exc:`RedisConnectionError`
+        - ``RedisError`` → :exc:`RedisServiceError`
+
+    Does NOT catch:
+        ``JSONDecodeError``, ``TypeError`` — data-specific errors are caught
+        in individual operations and re-raised as :exc:`RedisDataError`.
+    """
+
+    @wraps(func)
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        try:
+            return func(*args, **kwargs)
+        except (ConnectionError, TimeoutError) as e:
+            msg = f"Network failure in {func.__name__}: {e}"
+            log.exception("Redis | error=connection_failed fn='%s'", func.__name__)
+            raise RedisConnectionError(msg) from e
+        except RedisError as e:
+            msg = f"Operation failed in {func.__name__}: {e}"
+            log.exception("Redis | error=operation_failed fn='%s'", func.__name__)
+            raise RedisServiceError(msg) from e
+
+    return wrapper
+
+
 class BaseRedisService:
     """Base class that holds a Redis connection.
 

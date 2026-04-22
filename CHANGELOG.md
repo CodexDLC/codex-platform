@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 
+## [Unreleased]
+
+## [0.4.0] - 2026-04-22
+
+### Added
+- Synchronous Redis operations: `SyncStringOperations` and `SyncHashOperations` using `redis.Redis`.
+- Added `catch_redis_errors_sync` decorator for synchronous methods.
+- Added `encoder` parameter to `HashOperations.set_fields` and `SyncHashOperations.set_fields`.
+### Added
+- Added `py.typed` marker for PEP 561 compliance — downstream consumers now benefit from full type inference when using mypy or pyright.
+
+### Changed
+- Translated all Russian comments and docstrings to English across `redis_service/exceptions.py`, `workers/arq/config.py`, `notifications/registry.py`, and `streams/__init__.py`.
+
 ## [0.3.0] - 2026-04-05
 
 ### Changed

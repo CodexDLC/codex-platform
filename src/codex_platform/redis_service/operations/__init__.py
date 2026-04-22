@@ -5,6 +5,8 @@ from .list_ import ListOperations
 from .pipeline import PipelineOperations
 from .set_ import SetOperations
 from .string import StringOperations
+from .sync_hash import SyncHashOperations
+from .sync_string import SyncStringOperations
 from .zset import ZSetOperations
 
 __all__ = [
@@ -16,4 +18,6 @@ __all__ = [
     "JsonStringOperations",
     "JsonModuleOperations",
     "PipelineOperations",
+    "SyncStringOperations",
+    "SyncHashOperations",
 ]
