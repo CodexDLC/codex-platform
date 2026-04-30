@@ -5,6 +5,12 @@ Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-04-30
+
+### Fixed
+- Fixed GitHub Actions integration environment to install docs dependencies required by the MkDocs build test.
+- Stabilized the multi-consumer-group streams integration test by creating Redis consumer groups before publishing the shared event.
+
 ## [0.5.0] - 2026-04-30
 
 ### Added

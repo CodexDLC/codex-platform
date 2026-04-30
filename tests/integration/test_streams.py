@@ -205,6 +205,8 @@ async def test_two_consumer_groups_receive_same_event_history(clean_redis: Redis
     runtime_a.include_router(router_a)
     runtime_b.include_router(router_b)
 
+    await runtime_a.consumer.ensure_group()
+    await runtime_b.consumer.ensure_group()
     await runtime_a.start()
     await runtime_b.start()
     await runtime_a.producer.publish("shared.event", {"value": 7})
