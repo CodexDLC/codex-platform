@@ -44,7 +44,7 @@ from collections.abc import Callable
 from typing import TYPE_CHECKING, Any, Protocol, runtime_checkable
 
 if TYPE_CHECKING:
-    from .router import FilterFunc, HandlerFunc, StreamRouter
+    from .router import FilterFunc, HandlerFunc, StreamHandlerSpec, StreamRouter
 
 log = logging.getLogger(__name__)
 
@@ -98,37 +98,58 @@ class StreamDispatcher:
 
     def __init__(self, retry_scheduler: RetrySchedulerProtocol | None = None) -> None:
         self._retry_scheduler = retry_scheduler
-        self._handlers: dict[str, list[tuple[HandlerFunc, FilterFunc | None]]] = {}
+        self._handlers: dict[str, list[StreamHandlerSpec]] = {}
         log.info("StreamDispatcher | initialized")
 
-    def include_router(self, router: StreamRouter) -> None:
+    def include_router(self, router: StreamRouter, *, enabled_groups: set[str] | None = None) -> None:
         """Merges handlers from a ``StreamRouter`` into this dispatcher.
 
         Args:
             router: Router from a feature module.
+            enabled_groups: Optional logical handler groups to include.
         """
         for event_type, handlers in router.handlers.items():
-            if event_type not in self._handlers:
-                self._handlers[event_type] = []
-            self._handlers[event_type].extend(handlers)
+            selected = [
+                spec
+                for spec in handlers
+                if enabled_groups is None or spec.group is None or spec.group in enabled_groups
+            ]
+            if selected:
+                if event_type not in self._handlers:
+                    self._handlers[event_type] = []
+                self._handlers[event_type].extend(selected)
         log.info("StreamDispatcher | included router types=%s", list(router.handlers.keys()))
 
     def on(
         self,
         event_type: str,
         filter_func: FilterFunc | None = None,
+        *,
+        group: str | None = None,
+        reply: bool = False,
     ) -> Callable[[HandlerFunc], HandlerFunc]:
         """Decorator for registering a handler directly on the dispatcher.
 
         Args:
             event_type:  Stream message type (e.g. ``"booking.confirmed"``).
             filter_func: Optional ``payload -> bool`` filter.
+            group: Optional logical processing group used by ``StreamRuntime``.
+            reply: Whether the handler participates in request/reply flows.
         """
+        from .router import StreamHandlerSpec
 
         def decorator(handler: HandlerFunc) -> HandlerFunc:
             if event_type not in self._handlers:
                 self._handlers[event_type] = []
-            self._handlers[event_type].append((handler, filter_func))
+            self._handlers[event_type].append(
+                StreamHandlerSpec(
+                    event_type=event_type,
+                    handler=handler,
+                    filter_func=filter_func,
+                    group=group,
+                    reply=reply,
+                )
+            )
             return handler
 
         return decorator
@@ -152,13 +173,13 @@ class StreamDispatcher:
             log.debug("StreamDispatcher | no handlers for type='%s'", event_type)
             return
 
-        for handler, filter_func in handlers:
+        for spec in handlers:
             try:
-                if filter_func is None or filter_func(payload):
-                    log.debug("StreamDispatcher | calling %s for type='%s'", handler.__name__, event_type)
-                    await handler(payload)
+                if spec.filter_func is None or spec.filter_func(payload):
+                    log.debug("StreamDispatcher | calling %s for type='%s'", spec.handler.__name__, event_type)
+                    await spec.handler(payload)
             except Exception as e:
-                log.error("StreamDispatcher | handler %s failed: %s", handler.__name__, e)
+                log.error("StreamDispatcher | handler %s failed: %s", spec.handler.__name__, e)
 
                 if self._retry_scheduler:
                     try:

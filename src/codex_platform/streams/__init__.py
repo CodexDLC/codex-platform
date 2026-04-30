@@ -12,6 +12,7 @@ Components:
 - ``StreamProcessor``  — background polling engine (wraps StreamConsumer)
 - ``StreamRouter``     — groups handlers by event type (per-feature)
 - ``StreamDispatcher`` — routes messages to handlers (generic, no DI)
+- ``StreamRuntime``    — wires producer/consumer/dispatcher/processor with logical groups
 
 Typical setup::
 
@@ -20,40 +21,39 @@ Typical setup::
         StreamProcessor, StreamRouter, StreamDispatcher,
     )
 
-    # Producer
-    producer = StreamProducer(redis_client, stream_name="events:orders")
+    runtime = StreamRuntime(
+        redis_client,
+        StreamRuntimeConfig("events:orders", "monolith", "worker_1"),
+    )
 
-    # Consumer + Processor
-    consumer = StreamConsumer(redis_client, "events:orders", "workers", "worker_1")
-    dispatcher = StreamDispatcher()
+    router = StreamRouter()
 
-    @dispatcher.on("order.paid")
+    @router.on("order.paid", group="orders")
     async def handle_order(payload: dict) -> None:
         ...
 
-    processor = StreamProcessor(
-        storage=consumer,
-        stream_name="events:orders",
-        consumer_group_name="workers",
-        consumer_name="worker_1",
-    )
-    processor.set_callback(dispatcher.process)
-    await processor.start()
+    runtime.include_router(router)
+    await runtime.start()
 """
 
 from .consumer import StreamConsumer, StreamEvent
 from .dispatcher import RetrySchedulerProtocol, StreamDispatcher
 from .processor import StreamProcessor, StreamStorageProtocol
-from .producer import StreamProducer
-from .router import StreamRouter
+from .producer import StreamProducer, StreamReplyTimeoutError
+from .router import StreamHandlerSpec, StreamRouter
+from .runtime import StreamRuntime, StreamRuntimeConfig
 
 __all__ = [
     "StreamProducer",
+    "StreamReplyTimeoutError",
     "StreamConsumer",
     "StreamEvent",
     "StreamProcessor",
     "StreamStorageProtocol",
     "StreamRouter",
+    "StreamHandlerSpec",
     "StreamDispatcher",
     "RetrySchedulerProtocol",
+    "StreamRuntime",
+    "StreamRuntimeConfig",
 ]

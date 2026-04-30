@@ -23,10 +23,22 @@ Usage::
 """
 
 from collections.abc import Callable
+from dataclasses import dataclass
 from typing import Any
 
 HandlerFunc = Callable[[dict[str, Any]], Any]
 FilterFunc = Callable[[dict[str, Any]], bool]
+
+
+@dataclass(frozen=True)
+class StreamHandlerSpec:
+    """Registered stream handler metadata."""
+
+    event_type: str
+    handler: HandlerFunc
+    filter_func: FilterFunc | None = None
+    group: str | None = None
+    reply: bool = False
 
 
 class StreamRouter:
@@ -46,12 +58,15 @@ class StreamRouter:
     """
 
     def __init__(self) -> None:
-        self._handlers: dict[str, list[tuple[HandlerFunc, FilterFunc | None]]] = {}
+        self._handlers: dict[str, list[StreamHandlerSpec]] = {}
 
     def on(
         self,
         event_type: str,
         filter_func: FilterFunc | None = None,
+        *,
+        group: str | None = None,
+        reply: bool = False,
     ) -> Callable[[HandlerFunc], HandlerFunc]:
         """Decorator for registering a handler for an event type.
 
@@ -59,6 +74,8 @@ class StreamRouter:
             event_type:  Stream message type (e.g. ``"booking.confirmed"``).
             filter_func: Optional ``payload -> bool`` filter. Handler is called
                          only when filter returns ``True``.
+            group: Optional logical processing group used by ``StreamRuntime``.
+            reply: Whether the handler participates in request/reply flows.
 
         Returns:
             Decorator (returns the original handler unchanged).
@@ -67,12 +84,20 @@ class StreamRouter:
         def decorator(handler: HandlerFunc) -> HandlerFunc:
             if event_type not in self._handlers:
                 self._handlers[event_type] = []
-            self._handlers[event_type].append((handler, filter_func))
+            self._handlers[event_type].append(
+                StreamHandlerSpec(
+                    event_type=event_type,
+                    handler=handler,
+                    filter_func=filter_func,
+                    group=group,
+                    reply=reply,
+                )
+            )
             return handler
 
         return decorator
 
     @property
-    def handlers(self) -> dict[str, list[tuple[HandlerFunc, FilterFunc | None]]]:
+    def handlers(self) -> dict[str, list[StreamHandlerSpec]]:
         """Registered handlers (read-only)."""
         return self._handlers

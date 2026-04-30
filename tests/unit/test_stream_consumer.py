@@ -3,6 +3,7 @@
 import pytest
 
 from codex_platform.streams.consumer import StreamConsumer, StreamEvent
+from codex_platform.streams.processor import StreamStorageProtocol
 
 pytestmark = pytest.mark.unit
 
@@ -41,6 +42,16 @@ class TestRead:
         assert events[0].event_type == "order.paid"
         assert events[0].data["order_id"] == "42"
 
+    async def test_read_decodes_json_values(self, redis_client):
+        consumer = StreamConsumer(redis_client, "test:stream", "grp", "c1")
+        await consumer.ensure_group()
+        await redis_client.xadd("test:stream", {"type": "changed", "changes": 'json:{"hp":-1}', "active": "json:true"})
+
+        events = await consumer.read(count=10)
+
+        assert events[0].data["changes"] == {"hp": -1}
+        assert events[0].data["active"] is True
+
     async def test_read_returns_empty_when_no_messages(self, redis_client):
         consumer = StreamConsumer(redis_client, "test:stream", "grp", "c1")
         await consumer.ensure_group()
@@ -69,6 +80,25 @@ class TestAck:
             "grp",
         )
         assert pending["pending"] == 0
+
+
+class TestStorageProtocol:
+    async def test_consumer_matches_storage_protocol(self, redis_client):
+        consumer = StreamConsumer(redis_client, "test:stream", "grp", "c1")
+
+        assert isinstance(consumer, StreamStorageProtocol)
+
+    async def test_read_events_returns_dispatcher_payload(self, redis_client):
+        consumer = StreamConsumer(redis_client, "test:stream", "grp", "c1")
+        await consumer.create_group("test:stream", "grp")
+        await redis_client.xadd("test:stream", {"type": "ping", "value": "json:42"})
+
+        events = await consumer.read_events("test:stream", "grp", "c1", 10)
+
+        assert len(events) == 1
+        message_id, payload = events[0]
+        assert "-" in message_id
+        assert payload == {"type": "ping", "value": 42}
 
 
 class TestStreamEvent:

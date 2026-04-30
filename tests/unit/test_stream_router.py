@@ -18,7 +18,7 @@ class TestStreamRouterOn:
 
         assert "order.paid" in router.handlers
         assert len(router.handlers["order.paid"]) == 1
-        assert router.handlers["order.paid"][0][0] is handler
+        assert router.handlers["order.paid"][0].handler is handler
 
     def test_multiple_handlers_for_same_event(self):
         router = StreamRouter()
@@ -30,8 +30,8 @@ class TestStreamRouterOn:
         async def handler_b(payload: dict) -> None: ...
 
         assert len(router.handlers["order.paid"]) == 2
-        assert router.handlers["order.paid"][0][0] is handler_a
-        assert router.handlers["order.paid"][1][0] is handler_b
+        assert router.handlers["order.paid"][0].handler is handler_a
+        assert router.handlers["order.paid"][1].handler is handler_b
 
     def test_filter_func_stored(self):
         router = StreamRouter()
@@ -42,8 +42,8 @@ class TestStreamRouterOn:
         @router.on("alert.created", filter_func=my_filter)
         async def handler(payload: dict) -> None: ...
 
-        _handler, stored_filter = router.handlers["alert.created"][0]
-        assert stored_filter is my_filter
+        spec = router.handlers["alert.created"][0]
+        assert spec.filter_func is my_filter
 
     def test_filter_func_none_by_default(self):
         router = StreamRouter()
@@ -51,8 +51,19 @@ class TestStreamRouterOn:
         @router.on("ping")
         async def handler(payload: dict) -> None: ...
 
-        _, stored_filter = router.handlers["ping"][0]
-        assert stored_filter is None
+        spec = router.handlers["ping"][0]
+        assert spec.filter_func is None
+
+    def test_group_and_reply_stored(self):
+        router = StreamRouter()
+
+        @router.on("actor_state.snapshots_requested", group="actor_state", reply=True)
+        async def handler(payload: dict) -> None: ...
+
+        spec = router.handlers["actor_state.snapshots_requested"][0]
+        assert spec.group == "actor_state"
+        assert spec.reply is True
+        assert spec.event_type == "actor_state.snapshots_requested"
 
 
 class TestStreamRouterHandlers:

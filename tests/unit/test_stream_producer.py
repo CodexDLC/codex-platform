@@ -4,7 +4,7 @@ import pytest
 from redis.exceptions import RedisError
 
 from codex_platform.redis_service.exceptions import RedisConnectionError, RedisServiceError
-from codex_platform.streams.producer import StreamProducer
+from codex_platform.streams.producer import StreamProducer, StreamReplyTimeoutError
 
 pytestmark = pytest.mark.unit
 
@@ -33,26 +33,39 @@ class TestAddEvent:
         assert "-" in msg_id
 
 
+class TestPublish:
+    async def test_publish_adds_correlation_id(self, redis_client):
+        producer = StreamProducer(redis_client, "test:stream")
+        await producer.publish("ping", {}, correlation_id="cid-1")
+
+        entries = await redis_client.xrange("test:stream")
+        assert entries[0][1]["correlation_id"] == "cid-1"
+
+
 class TestSanitize:
     """StreamProducer._sanitize data conversion."""
 
-    def test_bool_true_converted(self):
+    def test_bool_true_json_encoded(self):
         result = StreamProducer._sanitize({"active": True})
-        assert result["active"] == "True"
+        assert result["active"] == "json:true"
 
-    def test_bool_false_converted(self):
+    def test_bool_false_json_encoded(self):
         result = StreamProducer._sanitize({"active": False})
-        assert result["active"] == "False"
+        assert result["active"] == "json:false"
 
-    def test_none_values_filtered(self):
+    def test_none_values_json_encoded(self):
         result = StreamProducer._sanitize({"a": "1", "b": None, "c": "3"})
-        assert "b" not in result
-        assert result == {"a": "1", "c": "3"}
+        assert result == {"a": "1", "b": "json:null", "c": "3"}
 
-    def test_all_values_to_str(self):
+    def test_numeric_values_json_encoded(self):
         result = StreamProducer._sanitize({"count": 42, "price": 9.99})
-        assert result["count"] == "42"
-        assert result["price"] == "9.99"
+        assert result["count"] == "json:42"
+        assert result["price"] == "json:9.99"
+
+    def test_dict_and_list_values_json_encoded(self):
+        result = StreamProducer._sanitize({"changes": {"hp": -1}, "ids": [1, 2]})
+        assert result["changes"] == 'json:{"hp":-1}'
+        assert result["ids"] == "json:[1,2]"
 
     def test_mixed_types(self):
         result = StreamProducer._sanitize(
@@ -66,10 +79,27 @@ class TestSanitize:
         )
         assert result == {
             "name": "test",
-            "active": "True",
-            "deleted": "False",
-            "count": "5",
+            "active": "json:true",
+            "deleted": "json:false",
+            "extra": "json:null",
+            "count": "json:5",
         }
+
+
+class TestRequestReply:
+    async def test_request_returns_reply_dict(self, redis_client):
+        producer = StreamProducer(redis_client, "test:stream")
+        await producer.publish_reply("cid-1", {"status": "ok"})
+
+        result = await producer.request("ping", {}, correlation_id="cid-1", timeout=1)
+
+        assert result == {"status": "ok"}
+
+    async def test_request_times_out(self, redis_client):
+        producer = StreamProducer(redis_client, "test:stream")
+
+        with pytest.raises(StreamReplyTimeoutError):
+            await producer.request("ping", {}, correlation_id="missing", timeout=0.01)
 
 
 class TestErrorHandling:

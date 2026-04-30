@@ -5,7 +5,9 @@ from typing import Any
 
 import pytest
 
+from codex_platform.streams.consumer import StreamConsumer
 from codex_platform.streams.processor import StreamProcessor
+from codex_platform.streams.producer import StreamProducer
 
 pytestmark = pytest.mark.unit
 
@@ -175,3 +177,29 @@ class TestStreamProcessorDispatch:
 
         # Message should NOT have been ACKed
         assert ("s", "g", "1-0") not in storage.acked
+
+    async def test_real_consumer_contract_dispatches_and_acks(self, redis_client):
+        consumer = StreamConsumer(redis_client, "test:stream", "grp", "c1")
+        producer = StreamProducer(redis_client, "test:stream")
+        received = []
+
+        async def callback(data):
+            received.append(data)
+
+        proc = StreamProcessor(
+            storage=consumer,
+            stream_name="test:stream",
+            consumer_group_name="grp",
+            consumer_name="c1",
+            poll_interval=0.01,
+        )
+        proc.set_callback(callback)
+
+        await producer.publish("ping", {"value": 42})
+        await proc.start()
+        await asyncio.sleep(0.1)
+        await proc.stop()
+
+        assert received == [{"type": "ping", "value": 42}]
+        pending = await redis_client.xpending("test:stream", "grp")
+        assert pending["pending"] == 0

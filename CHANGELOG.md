@@ -5,6 +5,17 @@ Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-04-30
+
+### Added
+- Added `StreamRuntime` and `StreamRuntimeConfig` for grouped Redis Streams workers that can run all handlers in monolith mode or only selected logical groups in split-service mode.
+- Added `StreamHandlerSpec` metadata and `group` / `reply` arguments to stream router and dispatcher decorators.
+- Added `StreamProducer.publish()`, `StreamProducer.request()`, and `StreamProducer.publish_reply()` for correlation-id based request/reply flows.
+
+### Changed
+- Redis Streams payloads now use JSON-safe field encoding for structured values instead of coercing every value to plain `str` or dropping `None`.
+- `StreamConsumer` now implements the `StreamStorageProtocol` used by `StreamProcessor` directly.
+
 ## [0.4.0] - 2026-04-22
 
 ### Added

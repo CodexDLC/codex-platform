@@ -7,7 +7,7 @@
 ## Producer Flow
 
 1. App constructs event data as a Python dict.
-2. `StreamProducer.add_event(event_type, data)` sanitizes the payload (all values → `str`, `None` filtered out, `type` field injected).
+2. `StreamProducer.publish(event_type, data)` JSON-encodes structured fields, preserves `None`, and injects the `type` field.
 3. `XADD {stream_name} * type {event_type} ...fields` is sent to Redis.
 4. Redis returns the event ID (`{timestamp}-{seq}`).
 
@@ -16,8 +16,8 @@
 1. At startup, `StreamConsumer.ensure_group()` calls `XGROUP CREATE` (idempotent — skips if group exists).
 2. `StreamConsumer.read(count)` calls `XREADGROUP GROUP {group} {consumer} COUNT {count} STREAMS {stream} >`.
 3. Each raw message is parsed into `StreamEvent(id, event_type, data)`.
-4. `StreamDispatcher` passes each event to `StreamRouter.dispatch(event)`.
-5. `StreamRouter` looks up the handler by `event.event_type` and calls it.
+4. `StreamProcessor` restores a dispatcher-ready payload with `type`.
+5. `StreamDispatcher` looks up matching handler specs and calls enabled handlers.
 6. On success → `StreamConsumer.ack(event.id)` → `XACK`.
 
 ## Retry / DLQ Flow
@@ -54,14 +54,14 @@ sequenceDiagram
     participant Router as StreamRouter
     participant Handler
 
-    App->>Producer: add_event("new_order", {order_id: 1})
-    Producer->>Redis: XADD orders * type new_order order_id 1
+    App->>Producer: publish("new_order", {order_id: 1})
+    Producer->>Redis: XADD orders * type new_order order_id json:1
     Redis-->>Producer: "1700000000-0"
 
     Consumer->>Redis: XREADGROUP GROUP workers consumer1 STREAMS orders >
-    Redis-->>Consumer: [StreamEvent(id, "new_order", {order_id: "1"})]
-    Consumer->>Router: dispatch(event)
-    Router->>Handler: handle_new_order(event)
+    Redis-->>Consumer: [StreamEvent(id, "new_order", {order_id: 1})]
+    Consumer->>Router: dispatch({"type": "new_order", "order_id": 1})
+    Router->>Handler: handle_new_order(payload)
     Handler-->>Router: OK
     Consumer->>Redis: XACK orders workers "1700000000-0"
 ```

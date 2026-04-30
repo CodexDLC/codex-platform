@@ -17,7 +17,7 @@ class TestStreamDispatcherOn:
         async def handler(payload: dict) -> None: ...
 
         assert "order.paid" in dispatcher._handlers
-        assert dispatcher._handlers["order.paid"][0][0] is handler
+        assert dispatcher._handlers["order.paid"][0].handler is handler
 
 
 class TestIncludeRouter:
@@ -33,7 +33,7 @@ class TestIncludeRouter:
         dispatcher.include_router(router)
 
         assert "booking.confirmed" in dispatcher._handlers
-        assert dispatcher._handlers["booking.confirmed"][0][0] is h1
+        assert dispatcher._handlers["booking.confirmed"][0].handler is h1
 
     def test_merges_multiple_routers(self):
         r1 = StreamRouter()
@@ -67,6 +67,25 @@ class TestIncludeRouter:
         dispatcher.include_router(r2)
 
         assert len(dispatcher._handlers["x"]) == 2
+
+    def test_filters_router_by_enabled_groups(self):
+        router = StreamRouter()
+
+        @router.on("a", group="actor_state")
+        async def actor_handler(p): ...
+
+        @router.on("b", group="scenario")
+        async def scenario_handler(p): ...
+
+        @router.on("c")
+        async def shared_handler(p): ...
+
+        dispatcher = StreamDispatcher()
+        dispatcher.include_router(router, enabled_groups={"actor_state"})
+
+        assert set(dispatcher._handlers) == {"a", "c"}
+        assert dispatcher._handlers["a"][0].handler is actor_handler
+        assert dispatcher._handlers["c"][0].handler is shared_handler
 
 
 class TestProcess:
