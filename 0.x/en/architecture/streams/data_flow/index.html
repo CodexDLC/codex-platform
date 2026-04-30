@@ -3186,7 +3186,7 @@
 <h2 id="producer-flow">Producer Flow</h2>
 <ol>
 <li>App constructs event data as a Python dict.</li>
-<li><code>StreamProducer.add_event(event_type, data)</code> sanitizes the payload (all values → <code>str</code>, <code>None</code> filtered out, <code>type</code> field injected).</li>
+<li><code>StreamProducer.publish(event_type, data)</code> JSON-encodes structured fields, preserves <code>None</code>, and injects the <code>type</code> field.</li>
 <li><code>XADD {stream_name} * type {event_type} ...fields</code> is sent to Redis.</li>
 <li>Redis returns the event ID (<code>{timestamp}-{seq}</code>).</li>
 </ol>
@@ -3195,8 +3195,8 @@
 <li>At startup, <code>StreamConsumer.ensure_group()</code> calls <code>XGROUP CREATE</code> (idempotent — skips if group exists).</li>
 <li><code>StreamConsumer.read(count)</code> calls <code>XREADGROUP GROUP {group} {consumer} COUNT {count} STREAMS {stream} &gt;</code>.</li>
 <li>Each raw message is parsed into <code>StreamEvent(id, event_type, data)</code>.</li>
-<li><code>StreamDispatcher</code> passes each event to <code>StreamRouter.dispatch(event)</code>.</li>
-<li><code>StreamRouter</code> looks up the handler by <code>event.event_type</code> and calls it.</li>
+<li><code>StreamProcessor</code> restores a dispatcher-ready payload with <code>type</code>.</li>
+<li><code>StreamDispatcher</code> looks up matching handler specs and calls enabled handlers.</li>
 <li>On success → <code>StreamConsumer.ack(event.id)</code> → <code>XACK</code>.</li>
 </ol>
 <h2 id="retry-dlq-flow">Retry / DLQ Flow</h2>
@@ -3227,14 +3227,14 @@
     participant Router as StreamRouter
     participant Handler
 
-    App-&gt;&gt;Producer: add_event("new_order", {order_id: 1})
-    Producer-&gt;&gt;Redis: XADD orders * type new_order order_id 1
+    App-&gt;&gt;Producer: publish("new_order", {order_id: 1})
+    Producer-&gt;&gt;Redis: XADD orders * type new_order order_id json:1
     Redis--&gt;&gt;Producer: "1700000000-0"
 
     Consumer-&gt;&gt;Redis: XREADGROUP GROUP workers consumer1 STREAMS orders &gt;
-    Redis--&gt;&gt;Consumer: [StreamEvent(id, "new_order", {order_id: "1"})]
-    Consumer-&gt;&gt;Router: dispatch(event)
-    Router-&gt;&gt;Handler: handle_new_order(event)
+    Redis--&gt;&gt;Consumer: [StreamEvent(id, "new_order", {order_id: 1})]
+    Consumer-&gt;&gt;Router: dispatch({"type": "new_order", "order_id": 1})
+    Router-&gt;&gt;Handler: handle_new_order(payload)
     Handler--&gt;&gt;Router: OK
     Consumer-&gt;&gt;Redis: XACK orders workers "1700000000-0"</code></pre>
 

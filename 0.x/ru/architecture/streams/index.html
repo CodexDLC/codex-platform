@@ -3227,7 +3227,7 @@
 
 <h1 id="streams">Streams (Потоки)</h1>
 <h2 id="_1">Назначение</h2>
-<p><code>streams</code> — шина событий на основе Redis Streams (XADD/XREADGROUP). Обеспечивает доставку «как минимум один раз» через consumer groups, автоматический повтор через ARQ и Dead Letter Queue (DLQ) для постоянно падающих событий.</p>
+<p><code>streams</code> — шина событий на основе Redis Streams (XADD/XREADGROUP). Обеспечивает доставку «как минимум один раз» через consumer groups, логические группы обработчиков для разделения монолита на сервисы, автоматический повтор через ARQ и Dead Letter Queue (DLQ) для постоянно падающих событий.</p>
 <h2 id="redis-streams">Почему Redis Streams</h2>
 <p>В отличие от pub/sub (fire-and-forget) или обычных Redis-списков, Redis Streams обеспечивают:</p>
 <ul>
@@ -3271,7 +3271,7 @@
 <tr>
 <td style="text-align: left;"><code>StreamProducer</code></td>
 <td style="text-align: left;"><code>producer.py</code></td>
-<td style="text-align: left;">Записывает события через XADD, санитизирует payload в <code>str</code></td>
+<td style="text-align: left;">Записывает события через XADD и предоставляет базовый request/reply</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>StreamConsumer</code></td>
@@ -3298,12 +3298,21 @@
 <td style="text-align: left;"><code>router.py</code></td>
 <td style="text-align: left;">Маппит <code>event_type</code> → функция-обработчик</td>
 </tr>
+<tr>
+<td style="text-align: left;"><code>StreamRuntime</code></td>
+<td style="text-align: left;"><code>runtime.py</code></td>
+<td style="text-align: left;">Собирает producer, consumer, dispatcher, processor и выбранные логические группы</td>
+</tr>
 </tbody>
 </table>
 <h2 id="_4">Ключевые архитектурные решения</h2>
 <ul>
 <li><strong>Consumer groups обязательны</strong> — модуль использует исключительно <code>XREADGROUP</code>. Одиночный <code>XREAD</code> не поддерживается. Создавайте группу через <code>StreamConsumer.ensure_group()</code> при старте.</li>
-<li><strong>Санитизированные payload</strong> — <code>StreamProducer._sanitize()</code> конвертирует все значения в <code>str</code> и убирает <code>None</code>. Redis Streams хранят только строковые поля.</li>
+<li><strong>Логические группы — это metadata обработчиков</strong> — <code>@router.on(..., group="actor_state")</code> помечает handler для выбора в runtime; Redis-доставка по-прежнему управляется <code>consumer_group</code>.</li>
+<li><strong>Монолит по умолчанию</strong> — <code>StreamRuntimeConfig(enabled_groups=None)</code> включает все handlers в одном процессе.</li>
+<li><strong>Режим отдельного сервиса</strong> — задайте <code>enabled_groups={"actor_state"}</code> и non-monolith Redis <code>consumer_group</code>, чтобы сервис получал собственное представление stream.</li>
+<li><strong>JSON-safe payloads</strong> — структурные значения кодируются JSON-prefixed stream fields и декодируются обратно в Python-значения при чтении.</li>
+<li><strong>Базовый request/reply</strong> — <code>StreamProducer.request()</code> публикует событие с <code>correlation_id</code> и ждет ответ в <code>reply:{correlation_id}</code>.</li>
 <li><strong>Повтор через ARQ</strong> — упавшие события ставятся обратно в исходный стрим через задачу ARQ <code>requeue_to_stream</code> (часть <code>workers.arq.CORE_FUNCTIONS</code>). После 5 попыток → DLQ (<code>{stream}:dlq</code>).</li>
 <li><strong>ACK только после успеха</strong> — XACK вызывается только после успешного завершения обработчика без исключений. Инфраструктурные исключения пробрасываются в процессор для планирования повтора.</li>
 </ul>

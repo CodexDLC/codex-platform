@@ -2833,6 +2833,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#codex_platform.streams.router.StreamHandlerSpec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;StreamHandlerSpec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#codex_platform.streams.router.StreamRouter" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3233,6 +3244,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#codex_platform.streams.router.StreamHandlerSpec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;StreamHandlerSpec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#codex_platform.streams.router.StreamRouter" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3391,6 +3413,77 @@ async def handle_urgent(payload: dict) -&gt; None:
 
 
 
+<h4 id="codex_platform.streams.router.StreamHandlerSpec" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>StreamHandlerSpec</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Registered stream handler metadata.</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>src/codex_platform/streams/router.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span>
+<span class="normal"><a href="#__codelineno-0-41">41</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamHandlerSpec</span><span class="p">:</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Registered stream handler metadata.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>    <span class="n">handler</span><span class="p">:</span> <span class="n">HandlerFunc</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>    <span class="n">filter_func</span><span class="p">:</span> <span class="n">FilterFunc</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a>    <span class="n">group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="n">reply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
 <h4 id="codex_platform.streams.router.StreamRouter" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>StreamRouter</code>
 
@@ -3423,99 +3516,125 @@ dispatcher.include_router(router)
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/codex_platform/streams/router.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span>
-<span class="normal"><a href="#__codelineno-0-36">36</a></span>
-<span class="normal"><a href="#__codelineno-0-37">37</a></span>
-<span class="normal"><a href="#__codelineno-0-38">38</a></span>
-<span class="normal"><a href="#__codelineno-0-39">39</a></span>
-<span class="normal"><a href="#__codelineno-0-40">40</a></span>
-<span class="normal"><a href="#__codelineno-0-41">41</a></span>
-<span class="normal"><a href="#__codelineno-0-42">42</a></span>
-<span class="normal"><a href="#__codelineno-0-43">43</a></span>
-<span class="normal"><a href="#__codelineno-0-44">44</a></span>
-<span class="normal"><a href="#__codelineno-0-45">45</a></span>
-<span class="normal"><a href="#__codelineno-0-46">46</a></span>
-<span class="normal"><a href="#__codelineno-0-47">47</a></span>
-<span class="normal"><a href="#__codelineno-0-48">48</a></span>
-<span class="normal"><a href="#__codelineno-0-49">49</a></span>
-<span class="normal"><a href="#__codelineno-0-50">50</a></span>
-<span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span>
-<span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
-<span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span>
-<span class="normal"><a href="#__codelineno-0-70">70</a></span>
-<span class="normal"><a href="#__codelineno-0-71">71</a></span>
-<span class="normal"><a href="#__codelineno-0-72">72</a></span>
-<span class="normal"><a href="#__codelineno-0-73">73</a></span>
-<span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span>
-<span class="normal"><a href="#__codelineno-0-76">76</a></span>
-<span class="normal"><a href="#__codelineno-0-77">77</a></span>
-<span class="normal"><a href="#__codelineno-0-78">78</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamRouter</span><span class="p">:</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Groups Redis Stream event handlers by message type.</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">    After populating, include into a ``StreamDispatcher`` via ``include_router()``.</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">    Example::</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">        router = StreamRouter()</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">        @router.on(&quot;order.paid&quot;)</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">        async def on_order_paid(payload: dict) -&gt; None:</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">            ...</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">        dispatcher.include_router(router)</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">HandlerFunc</span><span class="p">,</span> <span class="n">FilterFunc</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-0-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-0-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-0-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-0-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-0-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-0-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-0-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-0-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-0-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-0-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-0-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-0-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-0-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-0-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-0-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-0-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-0-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-0-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-0-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-0-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-0-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-0-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-0-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-0-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-0-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-0-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamRouter</span><span class="p">:</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Groups Redis Stream event handlers by message type.</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">    After populating, include into a ``StreamDispatcher`` via ``include_router()``.</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">    Example::</span>
 <a id="__codelineno-0-50" name="__codelineno-0-50"></a>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">on</span><span class="p">(</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>        <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a>        <span class="n">filter_func</span><span class="p">:</span> <span class="n">FilterFunc</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">HandlerFunc</span><span class="p">],</span> <span class="n">HandlerFunc</span><span class="p">]:</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Decorator for registering a handler for an event type.</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        Args:</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">            event_type:  Stream message type (e.g. ``&quot;booking.confirmed&quot;``).</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">            filter_func: Optional ``payload -&gt; bool`` filter. Handler is called</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">                         only when filter returns ``True``.</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        router = StreamRouter()</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">        @router.on(&quot;order.paid&quot;)</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        async def on_order_paid(payload: dict) -&gt; None:</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">            ...</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        dispatcher.include_router(router)</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">StreamHandlerSpec</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 <a id="__codelineno-0-62" name="__codelineno-0-62"></a>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">        Returns:</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">            Decorator (returns the original handler unchanged).</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="n">HandlerFunc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HandlerFunc</span><span class="p">:</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>            <span class="k">if</span> <span class="n">event_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">event_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">event_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">handler</span><span class="p">,</span> <span class="n">filter_func</span><span class="p">))</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>            <span class="k">return</span> <span class="n">handler</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">on</span><span class="p">(</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>        <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>        <span class="n">filter_func</span><span class="p">:</span> <span class="n">FilterFunc</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>        <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>        <span class="n">group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>        <span class="n">reply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">HandlerFunc</span><span class="p">],</span> <span class="n">HandlerFunc</span><span class="p">]:</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Decorator for registering a handler for an event type.</span>
 <a id="__codelineno-0-72" name="__codelineno-0-72"></a>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a>        <span class="k">return</span> <span class="n">decorator</span>
-<a id="__codelineno-0-74" name="__codelineno-0-74"></a>
-<a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="nd">@property</span>
-<a id="__codelineno-0-76" name="__codelineno-0-76"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">handlers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">HandlerFunc</span><span class="p">,</span> <span class="n">FilterFunc</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]]]:</span>
-<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Registered handlers (read-only).&quot;&quot;&quot;</span>
-<a id="__codelineno-0-78" name="__codelineno-0-78"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">            event_type:  Stream message type (e.g. ``&quot;booking.confirmed&quot;``).</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">            filter_func: Optional ``payload -&gt; bool`` filter. Handler is called</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">                         only when filter returns ``True``.</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">            group: Optional logical processing group used by ``StreamRuntime``.</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">            reply: Whether the handler participates in request/reply flows.</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">            Decorator (returns the original handler unchanged).</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="n">HandlerFunc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HandlerFunc</span><span class="p">:</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>            <span class="k">if</span> <span class="n">event_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">event_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">event_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>                <span class="n">StreamHandlerSpec</span><span class="p">(</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>                    <span class="n">event_type</span><span class="o">=</span><span class="n">event_type</span><span class="p">,</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>                    <span class="n">handler</span><span class="o">=</span><span class="n">handler</span><span class="p">,</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>                    <span class="n">filter_func</span><span class="o">=</span><span class="n">filter_func</span><span class="p">,</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>                    <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>                    <span class="n">reply</span><span class="o">=</span><span class="n">reply</span><span class="p">,</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>                <span class="p">)</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>            <span class="p">)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>            <span class="k">return</span> <span class="n">handler</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>        <span class="k">return</span> <span class="n">decorator</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>    <span class="nd">@property</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">handlers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">StreamHandlerSpec</span><span class="p">]]:</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Registered handlers (read-only).&quot;&quot;&quot;</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -3558,7 +3677,7 @@ dispatcher.include_router(router)
 
 
 <h6 id="codex_platform.streams.router.StreamRouter.on" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">on</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">filter_func</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">on</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">filter_func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reply</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h6>
 
@@ -3612,6 +3731,38 @@ dispatcher.include_router(router)
                   <code>None</code>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>group</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional logical processing group used by <code>StreamRuntime</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>reply</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether the handler participates in request/reply flows.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
       </tbody>
     </table>
 
@@ -3641,19 +3792,7 @@ dispatcher.include_router(router)
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/codex_platform/streams/router.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span>
-<span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-63">63</a></span>
 <span class="normal"><a href="#__codelineno-0-64">64</a></span>
 <span class="normal"><a href="#__codelineno-0-65">65</a></span>
 <span class="normal"><a href="#__codelineno-0-66">66</a></span>
@@ -3663,29 +3802,67 @@ dispatcher.include_router(router)
 <span class="normal"><a href="#__codelineno-0-70">70</a></span>
 <span class="normal"><a href="#__codelineno-0-71">71</a></span>
 <span class="normal"><a href="#__codelineno-0-72">72</a></span>
-<span class="normal"><a href="#__codelineno-0-73">73</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="k">def</span><span class="w"> </span><span class="nf">on</span><span class="p">(</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a>    <span class="n">filter_func</span><span class="p">:</span> <span class="n">FilterFunc</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">HandlerFunc</span><span class="p">],</span> <span class="n">HandlerFunc</span><span class="p">]:</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator for registering a handler for an event type.</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a><span class="sd">        event_type:  Stream message type (e.g. ``&quot;booking.confirmed&quot;``).</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a><span class="sd">        filter_func: Optional ``payload -&gt; bool`` filter. Handler is called</span>
-<a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">                     only when filter returns ``True``.</span>
-<a id="__codelineno-0-62" name="__codelineno-0-62"></a>
-<a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd">        Decorator (returns the original handler unchanged).</span>
-<a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-66" name="__codelineno-0-66"></a>
-<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="n">HandlerFunc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HandlerFunc</span><span class="p">:</span>
-<a id="__codelineno-0-68" name="__codelineno-0-68"></a>        <span class="k">if</span> <span class="n">event_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span>
-<a id="__codelineno-0-69" name="__codelineno-0-69"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">event_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-0-70" name="__codelineno-0-70"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">event_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">handler</span><span class="p">,</span> <span class="n">filter_func</span><span class="p">))</span>
-<a id="__codelineno-0-71" name="__codelineno-0-71"></a>        <span class="k">return</span> <span class="n">handler</span>
+<span class="normal"><a href="#__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#__codelineno-0-74">74</a></span>
+<span class="normal"><a href="#__codelineno-0-75">75</a></span>
+<span class="normal"><a href="#__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#__codelineno-0-78">78</a></span>
+<span class="normal"><a href="#__codelineno-0-79">79</a></span>
+<span class="normal"><a href="#__codelineno-0-80">80</a></span>
+<span class="normal"><a href="#__codelineno-0-81">81</a></span>
+<span class="normal"><a href="#__codelineno-0-82">82</a></span>
+<span class="normal"><a href="#__codelineno-0-83">83</a></span>
+<span class="normal"><a href="#__codelineno-0-84">84</a></span>
+<span class="normal"><a href="#__codelineno-0-85">85</a></span>
+<span class="normal"><a href="#__codelineno-0-86">86</a></span>
+<span class="normal"><a href="#__codelineno-0-87">87</a></span>
+<span class="normal"><a href="#__codelineno-0-88">88</a></span>
+<span class="normal"><a href="#__codelineno-0-89">89</a></span>
+<span class="normal"><a href="#__codelineno-0-90">90</a></span>
+<span class="normal"><a href="#__codelineno-0-91">91</a></span>
+<span class="normal"><a href="#__codelineno-0-92">92</a></span>
+<span class="normal"><a href="#__codelineno-0-93">93</a></span>
+<span class="normal"><a href="#__codelineno-0-94">94</a></span>
+<span class="normal"><a href="#__codelineno-0-95">95</a></span>
+<span class="normal"><a href="#__codelineno-0-96">96</a></span>
+<span class="normal"><a href="#__codelineno-0-97">97</a></span>
+<span class="normal"><a href="#__codelineno-0-98">98</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="k">def</span><span class="w"> </span><span class="nf">on</span><span class="p">(</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="n">filter_func</span><span class="p">:</span> <span class="n">FilterFunc</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="n">group</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="n">reply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">HandlerFunc</span><span class="p">],</span> <span class="n">HandlerFunc</span><span class="p">]:</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator for registering a handler for an event type.</span>
 <a id="__codelineno-0-72" name="__codelineno-0-72"></a>
-<a id="__codelineno-0-73" name="__codelineno-0-73"></a>    <span class="k">return</span> <span class="n">decorator</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">        event_type:  Stream message type (e.g. ``&quot;booking.confirmed&quot;``).</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">        filter_func: Optional ``payload -&gt; bool`` filter. Handler is called</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a><span class="sd">                     only when filter returns ``True``.</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">        group: Optional logical processing group used by ``StreamRuntime``.</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="sd">        reply: Whether the handler participates in request/reply flows.</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">        Decorator (returns the original handler unchanged).</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">handler</span><span class="p">:</span> <span class="n">HandlerFunc</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HandlerFunc</span><span class="p">:</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>        <span class="k">if</span> <span class="n">event_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">:</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">event_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_handlers</span><span class="p">[</span><span class="n">event_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>            <span class="n">StreamHandlerSpec</span><span class="p">(</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>                <span class="n">event_type</span><span class="o">=</span><span class="n">event_type</span><span class="p">,</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>                <span class="n">handler</span><span class="o">=</span><span class="n">handler</span><span class="p">,</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>                <span class="n">filter_func</span><span class="o">=</span><span class="n">filter_func</span><span class="p">,</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>                <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>                <span class="n">reply</span><span class="o">=</span><span class="n">reply</span><span class="p">,</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>            <span class="p">)</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>        <span class="p">)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>        <span class="k">return</span> <span class="n">handler</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>    <span class="k">return</span> <span class="n">decorator</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

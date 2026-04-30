@@ -2721,6 +2721,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer.StreamReplyTimeoutError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;StreamReplyTimeoutError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#codex_platform.streams.producer.StreamProducer" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2745,6 +2756,39 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer.StreamProducer.publish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;publish
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer.StreamProducer.request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer.StreamProducer.publish_reply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;publish_reply
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#codex_platform.streams.producer.StreamProducer.add_event" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2767,6 +2811,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
   
 </li>
         
@@ -3205,6 +3260,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer.StreamReplyTimeoutError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;StreamReplyTimeoutError
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#codex_platform.streams.producer.StreamProducer" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3229,6 +3295,39 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer.StreamProducer.publish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;publish
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer.StreamProducer.request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer.StreamProducer.publish_reply" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;publish_reply
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#codex_platform.streams.producer.StreamProducer.add_event" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3251,6 +3350,17 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codex_platform.streams.producer-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
   
 </li>
         
@@ -3319,6 +3429,44 @@
 
 
 
+<h4 id="codex_platform.streams.producer.StreamReplyTimeoutError" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>StreamReplyTimeoutError</code>
+
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="codex_platform.redis_service.exceptions.RedisServiceError">RedisServiceError</span></code></p>
+
+
+
+        <p>Raised when a request/reply stream call does not receive a reply in time.</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>src/codex_platform/streams/producer.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamReplyTimeoutError</span><span class="p">(</span><span class="n">RedisServiceError</span><span class="p">):</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when a request/reply stream call does not receive a reply in time.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
 <h4 id="codex_platform.streams.producer.StreamProducer" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>StreamProducer</code>
 
@@ -3331,10 +3479,7 @@
 
 
         <p>Writes events to a Redis Stream (XADD).</p>
-<p>Automatically sanitizes the payload before writing:
-- <code>bool</code> values are converted to <code>"True"</code> / <code>"False"</code>
-- <code>None</code> values are filtered out
-- all remaining values are coerced to <code>str</code></p>
+<p>Encodes structured payload values as JSON-prefixed Redis Stream fields.</p>
 
 
 
@@ -3345,91 +3490,213 @@
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/codex_platform/streams/producer.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-18">18</a></span>
-<span class="normal"><a href="#__codelineno-0-19">19</a></span>
-<span class="normal"><a href="#__codelineno-0-20">20</a></span>
-<span class="normal"><a href="#__codelineno-0-21">21</a></span>
-<span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span>
-<span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span>
-<span class="normal"><a href="#__codelineno-0-26">26</a></span>
-<span class="normal"><a href="#__codelineno-0-27">27</a></span>
-<span class="normal"><a href="#__codelineno-0-28">28</a></span>
-<span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span>
-<span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span>
-<span class="normal"><a href="#__codelineno-0-36">36</a></span>
-<span class="normal"><a href="#__codelineno-0-37">37</a></span>
-<span class="normal"><a href="#__codelineno-0-38">38</a></span>
-<span class="normal"><a href="#__codelineno-0-39">39</a></span>
-<span class="normal"><a href="#__codelineno-0-40">40</a></span>
-<span class="normal"><a href="#__codelineno-0-41">41</a></span>
-<span class="normal"><a href="#__codelineno-0-42">42</a></span>
-<span class="normal"><a href="#__codelineno-0-43">43</a></span>
-<span class="normal"><a href="#__codelineno-0-44">44</a></span>
-<span class="normal"><a href="#__codelineno-0-45">45</a></span>
-<span class="normal"><a href="#__codelineno-0-46">46</a></span>
-<span class="normal"><a href="#__codelineno-0-47">47</a></span>
-<span class="normal"><a href="#__codelineno-0-48">48</a></span>
-<span class="normal"><a href="#__codelineno-0-49">49</a></span>
-<span class="normal"><a href="#__codelineno-0-50">50</a></span>
-<span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamProducer</span><span class="p">:</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Writes events to a Redis Stream (XADD).</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20"></a>
-<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="sd">    Automatically sanitizes the payload before writing:</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="sd">    - ``bool`` values are converted to ``&quot;True&quot;`` / ``&quot;False&quot;``</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="sd">    - ``None`` values are filtered out</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="sd">    - all remaining values are coerced to ``str``</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26"></a>
-<a id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">Redis</span><span class="p">,</span> <span class="n">stream_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span> <span class="o">=</span> <span class="n">stream_name</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Append an event to the Redis Stream (XADD).</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">        Args:</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">            event_type: Event type label, e.g. ``&quot;new_appointment&quot;`` or ``&quot;new_contact&quot;``.</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">            data: Event payload. ``None`` values are filtered out automatically.</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">        Returns:</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">            The ID of the newly added stream entry (e.g. ``&quot;1718000000000-0&quot;``).</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">        Raises:</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">            RedisConnectionError: Redis connection failure.</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">            RedisServiceError: Redis operation failure.</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">        &quot;&quot;&quot;</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sanitize</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">event_type</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">})</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">xadd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a>            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;StreamProducer | added event_type=&#39;</span><span class="si">%s</span><span class="s2">&#39; id=&#39;</span><span class="si">%s</span><span class="s2">&#39; stream=&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span><span class="p">)</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a>            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50"></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a>            <span class="k">raise</span> <span class="n">RedisConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream producer connection failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>        <span class="k">except</span> <span class="n">RedisError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>            <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream producer error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
-<a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="nd">@staticmethod</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_sanitize</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert all values to str and filter out None entries.&quot;&quot;&quot;</span>
-<a id="__codelineno-0-58" name="__codelineno-0-58"></a>        <span class="k">return</span> <span class="p">{</span>
-<a id="__codelineno-0-59" name="__codelineno-0-59"></a>            <span class="n">k</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;True&quot;</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">True</span> <span class="k">else</span> <span class="s2">&quot;False&quot;</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="kc">False</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-<a id="__codelineno-0-60" name="__codelineno-0-60"></a>        <span class="p">}</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-0-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-0-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-0-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-0-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-0-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-0-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-0-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-0-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-0-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-0-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-0-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-0-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-0-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-0-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-0-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-0-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-0-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-0-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-0-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-0-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-0-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-0-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-0-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-0-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-0-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-0-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-0-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-0-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-0-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-0-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-0-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-0-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-0-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-0-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-0-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-0-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-0-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#__codelineno-0-110">110</a></span>
+<span class="normal"><a href="#__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#__codelineno-0-112">112</a></span>
+<span class="normal"><a href="#__codelineno-0-113">113</a></span>
+<span class="normal"><a href="#__codelineno-0-114">114</a></span>
+<span class="normal"><a href="#__codelineno-0-115">115</a></span>
+<span class="normal"><a href="#__codelineno-0-116">116</a></span>
+<span class="normal"><a href="#__codelineno-0-117">117</a></span>
+<span class="normal"><a href="#__codelineno-0-118">118</a></span>
+<span class="normal"><a href="#__codelineno-0-119">119</a></span>
+<span class="normal"><a href="#__codelineno-0-120">120</a></span>
+<span class="normal"><a href="#__codelineno-0-121">121</a></span>
+<span class="normal"><a href="#__codelineno-0-122">122</a></span>
+<span class="normal"><a href="#__codelineno-0-123">123</a></span>
+<span class="normal"><a href="#__codelineno-0-124">124</a></span>
+<span class="normal"><a href="#__codelineno-0-125">125</a></span>
+<span class="normal"><a href="#__codelineno-0-126">126</a></span>
+<span class="normal"><a href="#__codelineno-0-127">127</a></span>
+<span class="normal"><a href="#__codelineno-0-128">128</a></span>
+<span class="normal"><a href="#__codelineno-0-129">129</a></span>
+<span class="normal"><a href="#__codelineno-0-130">130</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="k">class</span><span class="w"> </span><span class="nc">StreamProducer</span><span class="p">:</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Writes events to a Redis Stream (XADD).</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">    Encodes structured payload values as JSON-prefixed Redis Stream fields.</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">Redis</span><span class="p">,</span> <span class="n">stream_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span> <span class="o">=</span> <span class="n">stream_name</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">publish</span><span class="p">(</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>        <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a>        <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>        <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>        <span class="n">correlation_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Append an event to the Redis Stream (XADD).</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">            event_type: Event type label, e.g. ``&quot;new_appointment&quot;`` or ``&quot;new_contact&quot;``.</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">            data: Event payload.</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">            correlation_id: Optional request/reply correlation id.</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">            The ID of the newly added stream entry (e.g. ``&quot;1718000000000-0&quot;``).</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        Raises:</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">            RedisConnectionError: Redis connection failure.</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">            RedisServiceError: Redis operation failure.</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>        <span class="n">payload_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">event_type</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">}</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>        <span class="k">if</span> <span class="n">correlation_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>            <span class="n">payload_data</span><span class="p">[</span><span class="s2">&quot;correlation_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">correlation_id</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sanitize</span><span class="p">(</span><span class="n">payload_data</span><span class="p">)</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">xadd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;StreamProducer | added event_type=&#39;</span><span class="si">%s</span><span class="s2">&#39; id=&#39;</span><span class="si">%s</span><span class="s2">&#39; stream=&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span><span class="p">)</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>            <span class="k">raise</span> <span class="n">RedisConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream producer connection failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>        <span class="k">except</span> <span class="n">RedisError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>            <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream producer error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">request</span><span class="p">(</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>        <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>        <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a>        <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>        <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>        <span class="n">correlation_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish an event and wait for a basic Redis-list reply.</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">        Replies are read from ``reply:{correlation_id}`` using ``BRPOP``.</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>        <span class="n">cid</span> <span class="o">=</span> <span class="n">correlation_id</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">correlation_id</span><span class="o">=</span><span class="n">cid</span><span class="p">)</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>        <span class="n">reply_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;reply:</span><span class="si">{</span><span class="n">cid</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>            <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">brpop</span><span class="p">(</span><span class="n">reply_key</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">timeout</span><span class="p">)))</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>            <span class="k">raise</span> <span class="n">RedisConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply connection failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>        <span class="k">except</span> <span class="n">RedisError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>            <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>            <span class="k">raise</span> <span class="n">StreamReplyTimeoutError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timed out waiting for stream reply: </span><span class="si">{</span><span class="n">reply_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>        <span class="n">_key</span><span class="p">,</span> <span class="n">raw_value</span> <span class="o">=</span> <span class="n">result</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">decode_stream_value</span><span class="p">(</span><span class="n">raw_value</span><span class="p">)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>            <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">):</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>                <span class="n">value</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>            <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply must decode to dict, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>        <span class="k">return</span> <span class="n">value</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">publish_reply</span><span class="p">(</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>        <span class="n">correlation_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a>        <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a>        <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>        <span class="n">ttl</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Publish a basic request/reply response to ``reply:{correlation_id}``.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a>        <span class="n">reply_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;reply:</span><span class="si">{</span><span class="n">correlation_id</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a>        <span class="n">encoded</span> <span class="o">=</span> <span class="n">encode_stream_payload</span><span class="p">({</span><span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">})[</span><span class="s2">&quot;reply&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>            <span class="n">length</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">lpush</span><span class="p">(</span><span class="n">reply_key</span><span class="p">,</span> <span class="n">encoded</span><span class="p">)</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a>            <span class="k">if</span> <span class="n">ttl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a>                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">expire</span><span class="p">(</span><span class="n">reply_key</span><span class="p">,</span> <span class="n">ttl</span><span class="p">)</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a>        <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a>            <span class="k">raise</span> <span class="n">RedisConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply publish connection failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a>        <span class="k">except</span> <span class="n">RedisError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>            <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply publish error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Compatibility alias for :meth:`publish`.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a>    <span class="nd">@staticmethod</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_sanitize</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Encode all values for Redis Stream storage.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130"></a>        <span class="k">return</span> <span class="n">encode_stream_payload</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -3449,8 +3716,8 @@
 <div class="doc doc-object doc-function">
 
 
-<h6 id="codex_platform.streams.producer.StreamProducer.add_event" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">add_event</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></code>
+<h6 id="codex_platform.streams.producer.StreamProducer.publish" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">publish</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">correlation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-async"><code>async</code></small>
@@ -3500,11 +3767,27 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Event payload. <code>None</code> values are filtered out automatically.</p>
+                <p>Event payload.</p>
               </div>
             </td>
             <td>
                 <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>correlation_id</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Optional request/reply correlation id.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
             </td>
           </tr>
       </tbody>
@@ -3569,13 +3852,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/codex_platform/streams/producer.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span>
-<span class="normal"><a href="#__codelineno-0-36">36</a></span>
-<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-37">37</a></span>
 <span class="normal"><a href="#__codelineno-0-38">38</a></span>
 <span class="normal"><a href="#__codelineno-0-39">39</a></span>
 <span class="normal"><a href="#__codelineno-0-40">40</a></span>
@@ -3591,29 +3868,237 @@
 <span class="normal"><a href="#__codelineno-0-50">50</a></span>
 <span class="normal"><a href="#__codelineno-0-51">51</a></span>
 <span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Append an event to the Redis Stream (XADD).</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33"></a>
-<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">    Args:</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">        event_type: Event type label, e.g. ``&quot;new_appointment&quot;`` or ``&quot;new_contact&quot;``.</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">        data: Event payload. ``None`` values are filtered out automatically.</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37"></a>
-<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">    Returns:</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">        The ID of the newly added stream entry (e.g. ``&quot;1718000000000-0&quot;``).</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40"></a>
-<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">    Raises:</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">        RedisConnectionError: Redis connection failure.</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">        RedisServiceError: Redis operation failure.</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">    &quot;&quot;&quot;</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sanitize</span><span class="p">({</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">event_type</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">})</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46"></a>    <span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-0-47" name="__codelineno-0-47"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">xadd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48"></a>        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;StreamProducer | added event_type=&#39;</span><span class="si">%s</span><span class="s2">&#39; id=&#39;</span><span class="si">%s</span><span class="s2">&#39; stream=&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span><span class="p">)</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50"></a>    <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-0-51" name="__codelineno-0-51"></a>        <span class="k">raise</span> <span class="n">RedisConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream producer connection failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52"></a>    <span class="k">except</span> <span class="n">RedisError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53"></a>        <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream producer error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<span class="normal"><a href="#__codelineno-0-53">53</a></span>
+<span class="normal"><a href="#__codelineno-0-54">54</a></span>
+<span class="normal"><a href="#__codelineno-0-55">55</a></span>
+<span class="normal"><a href="#__codelineno-0-56">56</a></span>
+<span class="normal"><a href="#__codelineno-0-57">57</a></span>
+<span class="normal"><a href="#__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span>
+<span class="normal"><a href="#__codelineno-0-64">64</a></span>
+<span class="normal"><a href="#__codelineno-0-65">65</a></span>
+<span class="normal"><a href="#__codelineno-0-66">66</a></span>
+<span class="normal"><a href="#__codelineno-0-67">67</a></span>
+<span class="normal"><a href="#__codelineno-0-68">68</a></span>
+<span class="normal"><a href="#__codelineno-0-69">69</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">publish</span><span class="p">(</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>    <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a>    <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="n">correlation_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Append an event to the Redis Stream (XADD).</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">        event_type: Event type label, e.g. ``&quot;new_appointment&quot;`` or ``&quot;new_contact&quot;``.</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">        data: Event payload.</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">        correlation_id: Optional request/reply correlation id.</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">        The ID of the newly added stream entry (e.g. ``&quot;1718000000000-0&quot;``).</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">    Raises:</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        RedisConnectionError: Redis connection failure.</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        RedisServiceError: Redis operation failure.</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>    <span class="n">payload_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="n">event_type</span><span class="p">,</span> <span class="o">**</span><span class="n">data</span><span class="p">}</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="k">if</span> <span class="n">correlation_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>        <span class="n">payload_data</span><span class="p">[</span><span class="s2">&quot;correlation_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">correlation_id</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="n">payload</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sanitize</span><span class="p">(</span><span class="n">payload_data</span><span class="p">)</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">xadd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;StreamProducer | added event_type=&#39;</span><span class="si">%s</span><span class="s2">&#39; id=&#39;</span><span class="si">%s</span><span class="s2">&#39; stream=&#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_name</span><span class="p">)</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>        <span class="k">raise</span> <span class="n">RedisConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream producer connection failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="k">except</span> <span class="n">RedisError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>        <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream producer error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="codex_platform.streams.producer.StreamProducer.request" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">request</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span> <span class="n">correlation_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h6>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Publish an event and wait for a basic Redis-list reply.</p>
+<p>Replies are read from <code>reply:{correlation_id}</code> using <code>BRPOP</code>.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/codex_platform/streams/producer.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-0-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-0-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-0-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-0-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-71" name="__codelineno-0-71"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">request</span><span class="p">(</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>    <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="n">correlation_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Publish an event and wait for a basic Redis-list reply.</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">    Replies are read from ``reply:{correlation_id}`` using ``BRPOP``.</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="n">cid</span> <span class="o">=</span> <span class="n">correlation_id</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">correlation_id</span><span class="o">=</span><span class="n">cid</span><span class="p">)</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="n">reply_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;reply:</span><span class="si">{</span><span class="n">cid</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">brpop</span><span class="p">(</span><span class="n">reply_key</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">timeout</span><span class="p">)))</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>        <span class="k">raise</span> <span class="n">RedisConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply connection failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>    <span class="k">except</span> <span class="n">RedisError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>        <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>        <span class="k">raise</span> <span class="n">StreamReplyTimeoutError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timed out waiting for stream reply: </span><span class="si">{</span><span class="n">reply_key</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="n">_key</span><span class="p">,</span> <span class="n">raw_value</span> <span class="o">=</span> <span class="n">result</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">decode_stream_value</span><span class="p">(</span><span class="n">raw_value</span><span class="p">)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>        <span class="k">with</span> <span class="n">contextlib</span><span class="o">.</span><span class="n">suppress</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">):</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>            <span class="n">value</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>        <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply must decode to dict, got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>    <span class="k">return</span> <span class="n">value</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="codex_platform.streams.producer.StreamProducer.publish_reply" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">publish_reply</span><span class="p">(</span><span class="n">correlation_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h6>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Publish a basic request/reply response to <code>reply:{correlation_id}</code>.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/codex_platform/streams/producer.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#__codelineno-0-110">110</a></span>
+<span class="normal"><a href="#__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#__codelineno-0-112">112</a></span>
+<span class="normal"><a href="#__codelineno-0-113">113</a></span>
+<span class="normal"><a href="#__codelineno-0-114">114</a></span>
+<span class="normal"><a href="#__codelineno-0-115">115</a></span>
+<span class="normal"><a href="#__codelineno-0-116">116</a></span>
+<span class="normal"><a href="#__codelineno-0-117">117</a></span>
+<span class="normal"><a href="#__codelineno-0-118">118</a></span>
+<span class="normal"><a href="#__codelineno-0-119">119</a></span>
+<span class="normal"><a href="#__codelineno-0-120">120</a></span>
+<span class="normal"><a href="#__codelineno-0-121">121</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">publish_reply</span><span class="p">(</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>    <span class="n">correlation_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a>    <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>    <span class="n">ttl</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Publish a basic request/reply response to ``reply:{correlation_id}``.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a>    <span class="n">reply_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;reply:</span><span class="si">{</span><span class="n">correlation_id</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a>    <span class="n">encoded</span> <span class="o">=</span> <span class="n">encode_stream_payload</span><span class="p">({</span><span class="s2">&quot;reply&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">})[</span><span class="s2">&quot;reply&quot;</span><span class="p">]</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>        <span class="n">length</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">lpush</span><span class="p">(</span><span class="n">reply_key</span><span class="p">,</span> <span class="n">encoded</span><span class="p">)</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a>        <span class="k">if</span> <span class="n">ttl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a>            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">expire</span><span class="p">(</span><span class="n">reply_key</span><span class="p">,</span> <span class="n">ttl</span><span class="p">)</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a>    <span class="k">except</span> <span class="p">(</span><span class="ne">ConnectionError</span><span class="p">,</span> <span class="ne">TimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a>        <span class="k">raise</span> <span class="n">RedisConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply publish connection failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a>    <span class="k">except</span> <span class="n">RedisError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>        <span class="k">raise</span> <span class="n">RedisServiceError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stream reply publish error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="codex_platform.streams.producer.StreamProducer.add_event" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">add_event</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h6>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compatibility alias for :meth:<code>publish</code>.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/codex_platform/streams/producer.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-123">123</a></span>
+<span class="normal"><a href="#__codelineno-0-124">124</a></span>
+<span class="normal"><a href="#__codelineno-0-125">125</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-123" name="__codelineno-0-123"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compatibility alias for :meth:`publish`.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>    <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3627,7 +4112,7 @@
     </div>
 
 </div>
-
+<h3 id="codex_platform.streams.producer-functions">Functions</h3>
 
 
 

@@ -3227,7 +3227,7 @@
 
 <h1 id="streams">Streams</h1>
 <h2 id="purpose">Purpose</h2>
-<p><code>streams</code> is an event bus built on Redis Streams (XADD/XREADGROUP). It provides at-least-once delivery with consumer groups, automatic retry via ARQ, and a Dead Letter Queue (DLQ) for permanently failed events.</p>
+<p><code>streams</code> is an event bus built on Redis Streams (XADD/XREADGROUP). It provides at-least-once delivery with consumer groups, logical handler groups for monolith-to-service splits, automatic retry via ARQ, and a Dead Letter Queue (DLQ) for permanently failed events.</p>
 <h2 id="why-redis-streams">Why Redis Streams</h2>
 <p>Unlike pub/sub (fire-and-forget) or simple Redis lists, Redis Streams provide:</p>
 <ul>
@@ -3271,7 +3271,7 @@
 <tr>
 <td style="text-align: left;"><code>StreamProducer</code></td>
 <td style="text-align: left;"><code>producer.py</code></td>
-<td style="text-align: left;">Writes events via XADD, sanitizes payload to <code>str</code></td>
+<td style="text-align: left;">Writes events via XADD and provides basic request/reply helpers</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>StreamConsumer</code></td>
@@ -3298,12 +3298,21 @@
 <td style="text-align: left;"><code>router.py</code></td>
 <td style="text-align: left;">Maps <code>event_type</code> → handler function</td>
 </tr>
+<tr>
+<td style="text-align: left;"><code>StreamRuntime</code></td>
+<td style="text-align: left;"><code>runtime.py</code></td>
+<td style="text-align: left;">Wires producer, consumer, dispatcher, processor, and selected logical groups</td>
+</tr>
 </tbody>
 </table>
 <h2 id="key-design-decisions">Key Design Decisions</h2>
 <ul>
 <li><strong>Consumer groups required</strong> — the module uses <code>XREADGROUP</code> exclusively. Single-consumer <code>XREAD</code> is not supported. Create the group via <code>StreamConsumer.ensure_group()</code> at startup.</li>
-<li><strong>Sanitized payloads</strong> — <code>StreamProducer._sanitize()</code> converts all values to <code>str</code> and drops <code>None</code>. Redis Streams only store string fields.</li>
+<li><strong>Logical groups are handler metadata</strong> — <code>@router.on(..., group="actor_state")</code> marks handlers for runtime selection; Redis delivery is still controlled by <code>consumer_group</code>.</li>
+<li><strong>Monolith default</strong> — <code>StreamRuntimeConfig(enabled_groups=None)</code> includes every handler in one process.</li>
+<li><strong>Split-service mode</strong> — set <code>enabled_groups={"actor_state"}</code> and use a non-monolith Redis <code>consumer_group</code> so the service receives its own view of the stream.</li>
+<li><strong>JSON-safe payloads</strong> — structured values are encoded as JSON-prefixed stream fields and decoded back to Python values on read.</li>
+<li><strong>Basic request/reply</strong> — <code>StreamProducer.request()</code> publishes with a <code>correlation_id</code> and waits on <code>reply:{correlation_id}</code>.</li>
 <li><strong>Retry via ARQ</strong> — failed events are requeued to the original stream with <code>_retries</code> counter via the <code>requeue_to_stream</code> ARQ task (part of <code>workers.arq.CORE_FUNCTIONS</code>). After 5 retries → DLQ (<code>{stream}:dlq</code>).</li>
 <li><strong>ACK after success only</strong> — XACK is called only after the handler completes without raising. Infrastructure exceptions propagate to the processor for retry scheduling.</li>
 </ul>
