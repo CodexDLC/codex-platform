@@ -28,6 +28,7 @@ class StreamRuntimeConfig:
     enabled_groups: Iterable[str] | None = None
     batch_count: int = 10
     poll_interval: float = 1.0
+    block_ms: int | None = 1000
     default_monolith_group: str = "monolith"
 
     @property
@@ -74,6 +75,7 @@ class StreamRuntime:
             consumer_name=config.consumer_name,
             batch_count=config.batch_count,
             poll_interval=config.poll_interval,
+            block_ms=config.block_ms,
         )
         self.processor.set_callback(self.dispatcher.process)
 

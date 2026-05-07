@@ -56,8 +56,45 @@ class TestRead:
         consumer = StreamConsumer(redis_client, "test:stream", "grp", "c1")
         await consumer.ensure_group()
 
-        events = await consumer.read(count=10)
+        events = await consumer.read(count=10, block_ms=1)
         assert events == []
+
+    async def test_read_passes_block_to_xreadgroup(self):
+        calls = []
+
+        class FakeRedis:
+            async def xreadgroup(self, **kwargs):
+                calls.append(kwargs)
+                return []
+
+        consumer = StreamConsumer(FakeRedis(), "test:stream", "grp", "c1")
+
+        events = await consumer.read(count=3, block_ms=5000)
+
+        assert events == []
+        assert calls == [
+            {
+                "groupname": "grp",
+                "consumername": "c1",
+                "streams": {"test:stream": ">"},
+                "count": 3,
+                "block": 5000,
+            }
+        ]
+
+    async def test_read_can_keep_legacy_non_blocking_call(self):
+        calls = []
+
+        class FakeRedis:
+            async def xreadgroup(self, **kwargs):
+                calls.append(kwargs)
+                return []
+
+        consumer = StreamConsumer(FakeRedis(), "test:stream", "grp", "c1")
+
+        await consumer.read(count=3, block_ms=None)
+
+        assert "block" not in calls[0]
 
 
 class TestAck:
@@ -93,7 +130,7 @@ class TestStorageProtocol:
         await consumer.create_group("test:stream", "grp")
         await redis_client.xadd("test:stream", {"type": "ping", "value": "json:42"})
 
-        events = await consumer.read_events("test:stream", "grp", "c1", 10)
+        events = await consumer.read_events("test:stream", "grp", "c1", 10, block_ms=1)
 
         assert len(events) == 1
         message_id, payload = events[0]

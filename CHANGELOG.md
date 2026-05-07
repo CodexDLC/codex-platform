@@ -5,6 +5,9 @@ Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 
 ## [Unreleased]
 
+### Fixed
+- Reduced Redis Streams consumer latency by using configurable blocking `XREADGROUP` reads instead of relying on the processor polling interval for normal wakeups.
+
 ## [0.5.1] - 2026-04-30
 
 ### Fixed

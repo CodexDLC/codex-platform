@@ -25,6 +25,7 @@ class FakeStorage:
         self._create_group_error = create_group_error
         self.created_groups: list[tuple[str, str]] = []
         self.acked: list[tuple[str, str, str]] = []
+        self.read_calls: list[dict[str, Any]] = []
 
     async def create_group(self, stream_name: str, group_name: str) -> None:
         if self._create_group_error:
@@ -37,7 +38,17 @@ class FakeStorage:
         group_name: str,
         consumer_name: str,
         count: int,
+        block_ms: int | None = 1000,
     ) -> list[tuple[str, dict[str, Any]]]:
+        self.read_calls.append(
+            {
+                "stream_name": stream_name,
+                "group_name": group_name,
+                "consumer_name": consumer_name,
+                "count": count,
+                "block_ms": block_ms,
+            }
+        )
         if not self._delivered and self._messages:
             self._delivered = True
             return self._messages
@@ -154,6 +165,36 @@ class TestStreamProcessorDispatch:
         await proc.stop()
 
         assert ("s", "g", "1-0") in storage.acked
+
+    async def test_passes_block_ms_to_storage_read_events(self):
+        storage = FakeStorage()
+
+        async def callback(data):
+            pass
+
+        proc = StreamProcessor(
+            storage=storage,
+            stream_name="s",
+            consumer_group_name="g",
+            consumer_name="c",
+            batch_count=7,
+            poll_interval=0.01,
+            block_ms=2500,
+        )
+        proc.set_callback(callback)
+
+        await proc.start()
+        await asyncio.sleep(0.05)
+        await proc.stop()
+
+        assert storage.read_calls
+        assert storage.read_calls[0] == {
+            "stream_name": "s",
+            "group_name": "g",
+            "consumer_name": "c",
+            "count": 7,
+            "block_ms": 2500,
+        }
 
     async def test_no_ack_on_callback_failure(self):
         messages = [("1-0", {"type": "fail"})]

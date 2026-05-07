@@ -68,11 +68,13 @@ class StreamConsumer:
             self.stream_name = original_stream
             self.group = original_group
 
-    async def read(self, count: int = 10) -> list[StreamEvent]:
+    async def read(self, count: int = 10, block_ms: int | None = 1000) -> list[StreamEvent]:
         """Read new events from the stream for the consumer group (XREADGROUP).
 
         Args:
             count: Maximum number of messages to fetch per call. Defaults to ``10``.
+            block_ms: Redis XREADGROUP block timeout in milliseconds. ``None``
+                keeps the legacy non-blocking read behavior.
 
         Returns:
             List of :class:`StreamEvent` instances. Empty list if no new messages.
@@ -82,11 +84,14 @@ class StreamConsumer:
             RedisServiceError: Redis operation failure.
         """
         try:
+            options: dict[str, Any] = {"count": count}
+            if block_ms is not None:
+                options["block"] = block_ms
             raw = await self.client.xreadgroup(
                 groupname=self.group,
                 consumername=self.consumer,
                 streams={self.stream_name: ">"},
-                count=count,
+                **options,
             )
             if not raw:
                 return []
@@ -104,6 +109,7 @@ class StreamConsumer:
         group_name: str | None = None,
         consumer_name: str | None = None,
         count: int = 10,
+        block_ms: int | None = 1000,
     ) -> list[tuple[str, dict[str, Any]]]:
         """Read dispatcher-ready events using the ``StreamStorageProtocol`` method name."""
         original_stream = self.stream_name
@@ -116,7 +122,7 @@ class StreamConsumer:
         if consumer_name is not None:
             self.consumer = consumer_name
         try:
-            events = await self.read(count=count)
+            events = await self.read(count=count, block_ms=block_ms)
             return [(event.id, event.payload) for event in events]
         finally:
             self.stream_name = original_stream

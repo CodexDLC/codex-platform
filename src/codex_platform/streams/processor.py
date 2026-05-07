@@ -18,7 +18,7 @@ Usage::
     # Option 2: Implement StreamStorageProtocol yourself (e.g. for testing)
     class FakeStorage:
         async def create_group(self, stream, group): ...
-        async def read_events(self, stream, group, consumer, count): return []
+        async def read_events(self, stream, group, consumer, count, block_ms=1000): return []
         async def ack_event(self, stream, group, message_id): ...
 """
 
@@ -53,6 +53,7 @@ class StreamStorageProtocol(Protocol):
         group_name: str,
         consumer_name: str,
         count: int,
+        block_ms: int | None = 1000,
     ) -> list[tuple[str, dict[str, Any]]]:
         """Reads undelivered messages for the group (XREADGROUP ... >).
 
@@ -84,7 +85,8 @@ class StreamProcessor:
         consumer_group_name: Shared group name (same across all instances = load balancing).
         consumer_name:       Unique name for this processor instance.
         batch_count:         Max messages per poll cycle.
-        poll_interval:       Sleep duration (seconds) when no messages available.
+        poll_interval:       Fallback sleep duration (seconds) after empty reads or errors.
+        block_ms:            Redis XREADGROUP block timeout in milliseconds.
 
     TODO:
         PEL recovery on startup — XPENDING/XCLAIM for messages stuck in PEL
@@ -113,6 +115,7 @@ class StreamProcessor:
         consumer_name: str,
         batch_count: int = 10,
         poll_interval: float = 1.0,
+        block_ms: int | None = 1000,
     ) -> None:
         self.storage = storage
         self.stream_name = stream_name
@@ -120,6 +123,7 @@ class StreamProcessor:
         self.consumer_name = consumer_name
         self.batch_count = batch_count
         self.poll_interval = poll_interval
+        self.block_ms = block_ms
 
         self.is_running = False
         self._callback: MessageCallback | None = None
@@ -182,6 +186,7 @@ class StreamProcessor:
                         group_name=self.group_name,
                         consumer_name=self.consumer_name,
                         count=self.batch_count,
+                        block_ms=self.block_ms,
                     )
 
                     if not messages:
