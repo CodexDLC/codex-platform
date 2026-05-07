@@ -1,16 +1,13 @@
-"""
-codex_platform.notifications.channels
-=======================================
-Enum of supported notification delivery channels.
-"""
+"""Deprecated compatibility imports for :mod:`codex_platform.messaging.channels`."""
 
-from enum import StrEnum
+from __future__ import annotations
 
+import warnings
 
-class NotificationChannel(StrEnum):
-    """Supported notification delivery channel identifiers."""
+warnings.warn(
+    "codex_platform.notifications.channels is deprecated; use codex_platform.messaging.channels instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
-    EMAIL = "email"
-    TELEGRAM = "telegram"
-    SMS = "sms"
-    WHATSAPP = "whatsapp"
+from codex_platform.messaging.channels import *  # noqa: E402,F401,F403

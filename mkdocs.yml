@@ -100,6 +100,26 @@ nav:
               - Поток данных: ru/architecture/workers/data_flow.md
   - API Reference:
       - Overview: en/api/index.md
+      - Messaging:
+          - Overview: en/api/messaging/index.md
+          - DTOs: en/api/messaging/dto.md
+          - Channels: en/api/messaging/channels.md
+          - Orchestrator: en/api/messaging/orchestrator.md
+          - Registry: en/api/messaging/registry.md
+          - Renderer: en/api/messaging/renderer.md
+          - Threading: en/api/messaging/threading.md
+          - Audience: en/api/messaging/audience.md
+          - Workers Contract: en/api/messaging/workers_contract.md
+          - Clients:
+              - SMTP: en/api/messaging/clients/smtp.md
+          - Campaigns:
+              - Overview: en/api/messaging/campaigns/index.md
+              - DTOs: en/api/messaging/campaigns/dto.md
+              - Protocols: en/api/messaging/campaigns/protocols.md
+          - Delivery:
+              - Base Protocol: en/api/messaging/delivery/base.md
+              - ARQ: en/api/messaging/delivery/arq.md
+              - Direct: en/api/messaging/delivery/direct.md
       - Notifications:
           - Overview: en/api/notifications/index.md
           - DTOs: en/api/notifications/dto.md

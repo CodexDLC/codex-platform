@@ -5,6 +5,14 @@ Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-05-07
+
+### Added
+- Added the framework-agnostic `codex_platform.messaging` package with notification delivery, campaign, threading, renderer, and SMTP primitives.
+
+### Deprecated
+- Deprecated `codex_platform.notifications` modules in favor of `codex_platform.messaging` compatibility re-exports.
+
 ### Fixed
 - Reduced Redis Streams consumer latency by using configurable blocking `XREADGROUP` reads instead of relying on the processor polling interval for normal wakeups.
 

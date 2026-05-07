@@ -1,33 +1,32 @@
-"""Deprecated compatibility direct adapter module."""
+"""Direct in-process delivery adapter."""
 
 from __future__ import annotations
 
 import asyncio
 import logging
-import warnings
 from typing import Any
 
-from codex_platform.messaging.delivery.base import NotificationAdapter
-
-warnings.warn(
-    "codex_platform.notifications.delivery.direct is deprecated; use codex_platform.messaging.delivery.direct instead.",
-    DeprecationWarning,
-    stacklevel=2,
-)
+from .base import NotificationAdapter
 
 log = logging.getLogger(__name__)
 
 
 class DirectNotificationAdapter(NotificationAdapter):
-    """Compatibility wrapper preserving legacy monkeypatch points."""
+    """Adapter for synchronous in-process notification delivery."""
 
     def __init__(self, config: Any) -> None:
         self.config = config
 
     def enqueue(self, _task_name: str, payload: dict[str, Any]) -> str | None:
-        from codex_platform.notifications.dto import NotificationPayloadDTO
-        from codex_platform.notifications.orchestrator import BaseDeliveryOrchestrator
-        from codex_platform.notifications.registry import ChannelRegistry
+        """Deliver a notification synchronously via the orchestrator pipeline."""
+
+        from codex_platform.messaging.dto import (
+            NotificationPayloadDTO,
+            RenderedNotificationDTO,
+            TemplateNotificationDTO,
+        )
+        from codex_platform.messaging.orchestrator import BaseDeliveryOrchestrator
+        from codex_platform.messaging.registry import ChannelRegistry
 
         log.debug("DirectNotificationAdapter | starting direct delivery")
 
@@ -36,7 +35,12 @@ class DirectNotificationAdapter(NotificationAdapter):
         channels = registry.build_channels(self.config)
         orchestrator = BaseDeliveryOrchestrator(channels=channels)
 
-        payload_dto = NotificationPayloadDTO(**payload)
+        if "html_content" in payload:
+            payload_dto = RenderedNotificationDTO(**payload)
+        elif "template_name" in payload and "context_key" in payload:
+            payload_dto = TemplateNotificationDTO(**payload)
+        else:
+            payload_dto = NotificationPayloadDTO(**payload)
         asyncio.run(orchestrator.deliver(payload_dto))
 
         notification_id = payload.get("notification_id")
@@ -45,10 +49,10 @@ class DirectNotificationAdapter(NotificationAdapter):
 
 
 def _register_default_channels(registry: Any, config: Any) -> None:
-    """Register default delivery channels from config."""
+    """Register default SMTP channel from config when available."""
 
     try:
-        from codex_platform.notifications.clients.smtp import AsyncEmailClient
+        from codex_platform.messaging.clients.smtp import AsyncEmailClient
 
         smtp_host = getattr(config, "SMTP_HOST", "")
         if smtp_host:
@@ -60,6 +64,8 @@ def _register_default_channels(registry: Any, config: Any) -> None:
                     smtp_user=getattr(cfg, "SMTP_USER", None),
                     smtp_password=getattr(cfg, "SMTP_PASSWORD", None),
                     smtp_from_email=getattr(cfg, "SMTP_FROM_EMAIL", None),
+                    smtp_use_tls=getattr(cfg, "SMTP_USE_TLS", False),
+                    smtp_from_name=getattr(cfg, "SMTP_FROM_NAME", ""),
                 ),
             )
     except ImportError:
