@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from inspect import Parameter, signature
 from typing import Protocol, runtime_checkable
 
 from .dto import NotificationPayloadDTO, ThreadHeadersDTO
@@ -53,17 +54,31 @@ class BaseDeliveryOrchestrator:
             if not channel.is_available():
                 continue
             try:
-                send_kwargs = {
-                    "to": to,
-                    "subject": subject,
-                    "html_content": getattr(payload, "html_content", None),
-                    "text_content": getattr(payload, "text_content", None),
-                }
+                html_content = getattr(payload, "html_content", None)
+                text_content = getattr(payload, "text_content", None)
                 headers = getattr(payload, "headers", None)
-                if headers is not None:
-                    send_kwargs["headers"] = headers
+                send_parameters = signature(channel.send).parameters
+                supports_headers = "headers" in send_parameters or any(
+                    parameter.kind == Parameter.VAR_KEYWORD for parameter in send_parameters.values()
+                )
+                delivered = (
+                    await channel.send(
+                        to=to,
+                        subject=subject,
+                        html_content=html_content,
+                        text_content=text_content,
+                        headers=headers,
+                    )
+                    if supports_headers
+                    else await channel.send(
+                        to=to,
+                        subject=subject,
+                        html_content=html_content,
+                        text_content=text_content,
+                    )
+                )
 
-                if await channel.send(**send_kwargs):
+                if delivered:
                     log.info(
                         "DeliveryOrchestrator | delivered via %s, notification_id=%s",
                         type(channel).__name__,

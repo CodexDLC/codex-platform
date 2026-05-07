@@ -35,6 +35,7 @@ class DirectNotificationAdapter(NotificationAdapter):
         channels = registry.build_channels(self.config)
         orchestrator = BaseDeliveryOrchestrator(channels=channels)
 
+        payload_dto: NotificationPayloadDTO
         if "html_content" in payload:
             payload_dto = RenderedNotificationDTO(**payload)
         elif "template_name" in payload and "context_key" in payload:
