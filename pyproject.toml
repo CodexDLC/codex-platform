@@ -20,7 +20,7 @@ classifiers = [
 ]
 dependencies = [
     "pydantic>=2.0,<3.0",
-    "codex-core>=0.3.0,<0.10.0",
+    "codex-core>=0.5.0,<0.10.0",
 ]
 
 [project.urls]
@@ -32,7 +32,7 @@ Issues = "https://github.com/codexdlc/codex-platform/issues"
 [project.optional-dependencies]
 redis = ["redis>=5.0"]
 arq = ["arq>=0.25"]
-notifications = ["aiosmtplib>=3.0", "jinja2>=3.1"]
+notifications = ["aiosmtplib>=5.1.2", "jinja2>=3.1"]
 streams = ["codex-platform[redis]"]
 all = [
     "codex-platform[redis,arq,notifications]",
@@ -49,12 +49,12 @@ dev = [
     "pre-commit>=3.0",
     "bandit>=1.7",
     "pip-audit>=2.7",
-    "pip>=26.1",
+    "pip>=26.2.1",
     "detect-secrets>=1.5",
 ]
 docs = [
     "mkdocs>=1.5,<2.0",
-    "mkdocs-material>=9.0",
+    "mkdocs-material>=9.7.7",
     "mkdocstrings[python]>=0.24",
     "mkdocs-include-markdown-plugin",
     "mike>=2.0",

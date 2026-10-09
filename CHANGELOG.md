@@ -10,6 +10,10 @@ Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 ### Added
 - Added an optional offline installer for the `codex-platform` consumer agent skill, with versioned ownership and safe install, update, status, and delete operations.
 
+### Changed
+- Raised the `codex-core` baseline to the published `0.5.0` release.
+- Raised the minimum supported `aiosmtplib`, `mkdocs-material`, and development `pip` versions to patched releases and refreshed the lockfile for vulnerable transitive dependencies.
+
 ### Fixed
 - Corrected architecture-guide links and refreshed installation examples for the `0.6.x` release line.
 

@@ -32,7 +32,7 @@ pip install "codex-platform[all]>=0.6.0,<0.7.0"
 ```
 
 Requires Python 3.12 or newer.
-Installs `codex-core>=0.3.0,<0.10.0` automatically as a dependency.
+Installs `codex-core>=0.5.0,<0.10.0` automatically as a dependency.
 The `0.6.x` examples describe the next release; until it is published, use the [latest available version on PyPI](https://pypi.org/project/codex-platform/).
 
 ## Development
