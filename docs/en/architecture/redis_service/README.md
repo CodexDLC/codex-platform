@@ -59,4 +59,4 @@ Selective composition: use Operations classes directly if you don't need all typ
 ## See Also
 
 - [Data Flow →](data_flow.md)
-- [API Reference →](../../../api/redis_service/index.md)
+- [API Reference →](../../api/redis_service/index.md)

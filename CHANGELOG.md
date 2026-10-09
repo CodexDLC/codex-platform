@@ -5,6 +5,14 @@ Grouped by `Added` · `Changed` · `Deprecated` · `Removed` · `Fixed`.
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-09
+
+### Added
+- Added an optional offline installer for the `codex-platform` consumer agent skill, with versioned ownership and safe install, update, status, and delete operations.
+
+### Fixed
+- Corrected architecture-guide links and refreshed installation examples for the `0.6.x` release line.
+
 ## [0.5.2] - 2026-05-07
 
 ### Added

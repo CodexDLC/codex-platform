@@ -59,4 +59,4 @@ BaseArqService  (enqueue from application code / other workers)
 
 - [Data Flow →](data_flow.md)
 - [Streams retry integration →](../streams/README.md)
-- [API Reference →](../../../api/workers/arq/index.md)
+- [API Reference →](../../api/workers/arq/index.md)

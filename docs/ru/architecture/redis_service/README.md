@@ -59,4 +59,4 @@ RedisService (корень композиции)
 ## Смотрите также
 
 - [Data Flow →](data_flow.md)
-- [API Reference →](../../../api/redis_service/index.md)
+- [API Reference →](../../../en/api/redis_service/index.md)

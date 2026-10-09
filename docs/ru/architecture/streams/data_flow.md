@@ -1,6 +1,6 @@
 <!-- type: CONCEPT -->
 
-[← Streams](README.md) | [Главная](../../index.md)
+[← Streams](README.md) | [Главная](../../../index.md)
 
 # Data Flow: Streams
 

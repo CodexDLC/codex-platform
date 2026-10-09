@@ -1,6 +1,6 @@
 <!-- type: CONCEPT -->
 
-[← Redis Service](README.md) | [Home](../../index.md)
+[← Redis Service](README.md) | [Home](../../../index.md)
 
 # Data Flow: Redis Service
 

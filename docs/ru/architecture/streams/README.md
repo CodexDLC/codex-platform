@@ -69,4 +69,4 @@ App → StreamProducer               StreamConsumer (XREADGROUP)
 ## Смотрите также
 
 - [Data Flow →](data_flow.md)
-- [API Reference →](../../../api/streams/index.md)
+- [API Reference →](../../../en/api/streams/index.md)

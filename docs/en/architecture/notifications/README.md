@@ -63,4 +63,4 @@ NotificationEngine.send(payload_dto)
 ## See Also
 
 - [Data Flow →](data_flow.md)
-- [API Reference →](../../../api/notifications/index.md)
+- [API Reference →](../../api/notifications/index.md)

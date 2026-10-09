@@ -1,6 +1,6 @@
 <!-- type: CONCEPT -->
 
-[← Notifications](README.md) | [Home](../../index.md)
+[← Notifications](README.md) | [Home](../../../index.md)
 
 # Data Flow: Notifications
 

@@ -59,4 +59,4 @@ BaseArqService  (постановка задач из кода приложен�
 
 - [Data Flow →](data_flow.md)
 - [Интеграция с повторами Streams →](../streams/README.md)
-- [API Reference →](../../../api/workers/arq/index.md)
+- [API Reference →](../../../en/api/workers/arq/index.md)

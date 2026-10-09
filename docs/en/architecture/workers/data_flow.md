@@ -1,6 +1,6 @@
 <!-- type: CONCEPT -->
 
-[← Workers](README.md) | [Home](../../index.md)
+[← Workers](README.md) | [Home](../../../index.md)
 
 # Data Flow: Workers (ARQ)
 
