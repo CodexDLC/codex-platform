@@ -9,7 +9,7 @@ Built to be dropped into any Python 3.12+ service as a set of composable, indepe
 ## Install
 
 ```bash
-# codex-platform 0.6.x (after 0.6.0 is published)
+# codex-platform 0.6.x
 pip install "codex-platform>=0.6.0,<0.7.0"
 
 # With Redis support
@@ -30,7 +30,6 @@ pip install "codex-platform[all]>=0.6.0,<0.7.0"
 
 Requires Python 3.12 or newer.
 Installs `codex-core>=0.5.0,<0.10.0` automatically as a dependency.
-The `0.6.x` examples describe the next release; until it is published, use the [latest available version on PyPI](https://pypi.org/project/codex-platform/).
 
 ## Quick Start
 
