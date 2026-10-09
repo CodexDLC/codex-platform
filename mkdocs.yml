@@ -71,6 +71,7 @@ plugins:
 nav:
   - Home: index.md
   - Guide (EN):
+      - Agent Skill: en/guides/agent-skills.md
       - Architecture:
           - Notifications:
               - Overview: en/architecture/notifications/README.md
@@ -85,6 +86,7 @@ nav:
               - Overview: en/architecture/workers/README.md
               - Data Flow: en/architecture/workers/data_flow.md
   - Руководство (RU):
+      - Навык для агента: ru/guides/agent-skills.md
       - Архитектура:
           - Уведомления:
               - Обзор: ru/architecture/notifications/README.md

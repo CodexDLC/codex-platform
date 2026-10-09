@@ -7,3 +7,7 @@ Rules:
 - If `../graphify-out/wiki/index.md` exists, navigate it instead of reading raw files.
 - For cross-module questions, prefer `graphify query`, `graphify path`, or `graphify explain` (run from root or via MCP) over grep.
 - After modifying code files in this session, run `graphify update .` from the **workspace root** to keep the global graph current.
+
+## Project maintenance
+
+For maintenance of this library, use [codex-platform-maintainer](.agents/skills/codex-platform-maintainer/SKILL.md). The distributable consumer guidance is maintained separately in `src/codex_platform/agent_skills/resources/`.
